@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT         Dactyl Ergo(6x6)
+#define PRODUCT         Gwin Dactyl(6x6)
 
 /* key matrix size */
 // Rows are doubled-up
