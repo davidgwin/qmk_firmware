@@ -4,20 +4,18 @@
 #define _QWERTY 0
 #define _SALEM 1
 #define _MONA 2
-#define _LEVAN 3
-#define _OREM 4
-
-#define MONA TG(_MONA)
+#define _LEVAN 3 
+ 
+#define MONA MO(_MONA)
 #define SALEM MO(_SALEM)
-#define LEVAN TG(_LEVAN)
-#define OREM MO(_OREM)
+#define LEVAN MO(_LEVAN) 
 
 #define LG_QUOT LGUI_T(KC_QUOT)
 #define RG_CAPS RGUI_T(KC_CAPS)
 #define CTL_ESC LCTL_T(KC_ESC)
 #define CTL_SLS LCTL_T(KC_SLSH)
 #define LVN_ESC LT(_LEVAN, KC_ESC)
-#define RALT_RT RALT(KC_RGHT)
+#define ALT_RGT RALT(KC_RGHT)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -26,8 +24,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  ,KC_W   , KC_E , KC_R  , KC_T  ,                                        KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL,
         RG_CAPS, KC_A  ,KC_S   , KC_D , KC_F  , KC_G  ,                                        KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,LG_QUOT,
         KC_LSFT, KC_Z  ,KC_X   , KC_C , KC_V  , KC_B  ,                                        KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LALT, OREM  , LEVAN, MONA  , SALEM ,KC_ENT,KC_LGUI ,      KC_TAB ,KC_ENT ,  KC_SPC , KC_LEFT,KC_DOWN,KC_UP ,RALT_RT,KC_RCTL,                                                                       
-                                                       KC_BSPC, KC_DEL,      SALEM  ,LVN_ESC
+        KC_LCTL,KC_LGUI,KC_LALT, KC_ESC  ,KC_BSPC,KC_DEL, KC_SPC, SALEM ,     KC_TAB ,KC_ENT ,  KC_SPC , KC_LEFT,KC_DOWN,KC_UP , KC_RGHT,KC_RCTL,                                                                       
+                                                          LEVAN , MONA  ,     KC_RALT ,SALEM  
                                                                              
     ),
     [_SALEM] = LAYOUT_6x6(
@@ -44,8 +42,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,KC_WH_L,KC_MS_U,KC_WH_R,_______,                                       KC_ACL2,_______,_______,_______,_______,_______,
         _______,_______,KC_MS_L,KC_MS_D,KC_MS_R,_______,                                       KC_ACL1,KC_BTN1,KC_BTN2,KC_BTN3,KC_BTN4,KC_MPLY,
         _______,_______,_______,_______,_______,_______,                                       KC_ACL0,_______,KC_MPRV,KC_MNXT,_______,_______,
-        _______,_______,_______,_______, MONA  ,_______,KC_BTN1,KC_BTN2,      KC_BTN1,KC_BTN2, KC_WBAK,_______,_______,_______,_______,_______, 
-                                                        KC_WH_U, KC_WH_D,     KC_WH_U,KC_WH_D
+        _______,_______,_______,_______,_______,_______,KC_BTN1,KC_BTN2,      KC_BTN1,KC_BTN2, KC_WBAK,_______,_______,_______,_______,_______, 
+                                                      _______, _______,     KC_WH_U,KC_WH_D
                                                                               
     ),
     [_LEVAN] = LAYOUT_6x6(
@@ -53,16 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,                                       _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
         _______,_______,_______,_______,_______,_______,                                       _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
         _______,_______,_______,_______,_______,_______,                                       _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
-        _______,_______,_______, LEVAN,_______,_______,_______,_______,        _______,_______,_______,_______,KC_P0  ,KC_DOT ,KC_PENT,_______, 
-                                                       _______,_______,        _______,_______
+        _______ ,_______,_______,_______,_______,_______,_______,_______,        _______,_______,_______,_______,KC_P0  ,KC_DOT ,KC_PENT,_______, 
+                                                         _______,_______,        _______,_______
                                                                                
-    ),
-    [_OREM] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
-        RESET  ,_______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,       _______,_______
-    )
+    ) 
 };

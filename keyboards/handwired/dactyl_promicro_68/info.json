@@ -1,7 +1,7 @@
 {
-    "keyboard_name": "Dactyl ProMicro",
+    "keyboard_name": "Dactyl ProMicro 68",
     "url": "",
-    "maintainer": "qmk",
+    "maintainer": "Dave",
     "layouts": {
         "LAYOUT_6x6": {
             "layout": [
@@ -69,8 +69,8 @@
                 {"label":"R43", "x":14, "y":4},
                 {"label":"R44", "x":15, "y":4},
                 {"label":"R45", "x":16, "y":4},
-                {"label":"L53", "x":6, "y":5},
-                {"label":"L52", "x":7, "y":5},
+                {"label":"L52", "x":6, "y":5},
+                {"label":"L53", "x":7, "y":5},
                 {"label":"R52", "x":9, "y":5},
                 {"label":"R53", "x":10, "y":5}
             ]
