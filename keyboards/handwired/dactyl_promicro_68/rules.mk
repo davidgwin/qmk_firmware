@@ -18,3 +18,5 @@ AUDIO_ENABLE = no           # Audio output
 RGBLIGHT_ENABLE = no       # Enable WS2812 RGB underlight. 
 
 SPLIT_KEYBOARD = yes
+
+DYNAMIC_MACRO_ENABLE = yes
