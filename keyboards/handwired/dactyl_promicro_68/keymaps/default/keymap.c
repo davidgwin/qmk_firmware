@@ -21,6 +21,7 @@
 #define LVN_ESC LT(_LEVAN, KC_ESC) 
 #define DBEAVER LT(_BEAVER, KC_D)
 #define KKANAB LT(_KANAB, KC_K)
+#define FSALEM LT(_SALEM, KC_F)
 #define ALT_RGT RALT(KC_RGHT)
 #define A_SHFT RSFT_T(KC_A)
 #define CL_SHFT RSFT_T(KC_SCLN)
@@ -86,15 +87,31 @@ const uint32_t PROGMEM unicode_map[] = {
 
 };
 
-
+// // Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+// const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//     {3, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
+//     // {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+// );
+// // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+// const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//     {9, 2, HSV_CYAN}
+// );
+// // Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+// const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//     {11, 2, HSV_PURPLE}
+// );
+// // Light LEDs 13 & 14 in green when keyboard layer 3 is active
+// const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+//     {13, 2, HSV_GREEN}
+// );
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_6x6(
         KC_GRAVE, KC_1 ,KC_2   , KC_3 , KC_4  , KC_5  ,                                        KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
         KC_TAB , KC_Q  ,KC_W   , KC_E , KC_R  , KC_T  ,                                        KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
-        KC_CAPS, A_SHFT,KC_S   ,DBEAVER, KC_F , KC_G  ,                                        KC_H   , KC_J  ,KKANAB , KC_L  ,CL_SHFT,KC_QUOT,
-        KC_LSFT, KC_Z  ,KC_X   , KC_C , KC_V  ,KC_B,                                           KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_SFTENT,
-        KC_LCTL,KC_LGUI,KC_LALT,KC_ESC ,KC_DEL,SALEM, KC_BSPC,KC_LCTL,       KC_RALT, KC_SPC, KC_RSFT, KC_LEFT,KC_DOWN, KC_UP , KC_RGHT,  KC_RCTL,                                                                       
+        KC_CAPS, KC_A, KC_S ,DBEAVER, FSALEM , KC_G   ,                                        KC_H   , KC_J  ,KKANAB , KC_L  ,KC_SCLN,KC_QUOT,
+        KC_LSFT, KC_Z  ,KC_X   , KC_C , KC_V  ,KC_B  ,                                         KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_SFTENT,
+        KC_LCTL,KC_LGUI,KC_LALT,KC_ESC ,KC_DEL,KC_LSFT,SALEM,KC_LCTL,       KC_RALT, KC_SPC, KC_RSFT, KC_LEFT,KC_DOWN, KC_UP , KC_RGHT,  KC_RCTL,                                                                       
                                                         MONA ,LEVAN ,        KC_BSPC, KC_ENT
                                                                             
     ), 
@@ -107,11 +124,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,_______,       _______,_______                                             
     ),
     [_MONA] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
-        BL_STEP,_______,_______,_______,_______,_______,                                       _______,_______,KC_MS_U,_______,_______,_______,
-        BL_ON  ,BL_OFF ,KC_BTN3,KC_BTN2,KC_BTN1,_______,                                       _______,KC_MS_L,KC_MS_D,KC_MS_R,_______,_______,
-        BL_TOGG,BL_BRTG,_______,_______,_______,_______,                                       _______,_______,KC_MSTP,KC_MPLY,_______,_______,
-        BL_INC,BL_DEC,_______,_______,_______,_______,_______,_______,        KC_WH_L,KC_WH_R, KC_WH_U,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
+        _______,RGB_HUI,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
+        RGB_MOD,RGB_SAI,_______,_______,_______,_______,                                       _______,_______,KC_MS_U,_______,_______,_______,
+        RGB_VAI  ,RGB_VAD ,KC_BTN3,KC_BTN2,KC_BTN1,_______,                                       _______,KC_MS_L,KC_MS_D,KC_MS_R,_______,_______,
+        RGB_TOG,_______,_______,_______,_______,_______,                                       _______,_______,KC_MSTP,KC_MPLY,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,        KC_WH_L,KC_WH_R, KC_WH_U,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
                                                       _______,_______,        _______,KC_WH_D
                                                                               
     ),
