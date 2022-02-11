@@ -87,31 +87,59 @@ const uint32_t PROGMEM unicode_map[] = {
 
 };
 
-// // Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
-// const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {3, 4, HSV_RED},       // Light 4 LEDs, starting with LED 6
-//     // {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
-// );
-// // Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
-// const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {9, 2, HSV_CYAN}
-// );
-// // Light LEDs 11 & 12 in purple when keyboard layer 2 is active
-// const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {11, 2, HSV_PURPLE}
-// );
-// // Light LEDs 13 & 14 in green when keyboard layer 3 is active
-// const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//     {13, 2, HSV_GREEN}
-// );
+// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_RED}       // Light 4 LEDs, starting with LED 6
+    // {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
+);
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,0, HSV_CORAL}
+);
+// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
+const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_PURPLE}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 3 is active
+const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_GREEN}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 4 is active
+const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_YELLOW}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 5 is active
+const rgblight_segment_t PROGMEM my_layer5_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_ORANGE}
+);
+// Light LEDs 13 & 14 in green when keyboard layer 5 is active
+const rgblight_segment_t PROGMEM my_layer6_layer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0,8, HSV_CYAN}
+);
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_capslock_layer,
+    my_layer1_layer,    // Overrides caps lock layer
+    my_layer2_layer,    // Overrides other layers
+    my_layer3_layer,     // Overrides other layers
+    my_layer4_layer,    // Overrides other layersCVV
+    my_layer5_layer,    // Overrides other layersCVV
+    my_layer6_layer   // Overrides other layersCVV
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_6x6(
         KC_GRAVE, KC_1 ,KC_2   , KC_3 , KC_4  , KC_5  ,                                        KC_6   , KC_7  , KC_8  , KC_9  , KC_0  ,KC_MINS,
         KC_TAB , KC_Q  ,KC_W   , KC_E , KC_R  , KC_T  ,                                        KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
-        KC_CAPS, KC_A, KC_S ,DBEAVER, FSALEM , KC_G   ,                                        KC_H   , KC_J  ,KKANAB , KC_L  ,KC_SCLN,KC_QUOT,
+        KC_CAPS, A_SHFT, KC_S ,DBEAVER, FSALEM , KC_G   ,                                        KC_H   , KC_J  ,KKANAB , KC_L  ,CL_SHFT,KC_QUOT,
         KC_LSFT, KC_Z  ,KC_X   , KC_C , KC_V  ,KC_B  ,                                         KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_SFTENT,
-        KC_LCTL,KC_LGUI,KC_LALT,KC_ESC ,KC_DEL,KC_LSFT,SALEM,KC_LCTL,       KC_RALT, KC_SPC, KC_RSFT, KC_LEFT,KC_DOWN, KC_UP , KC_RGHT,  KC_RCTL,                                                                       
+        KC_LCTL,KC_LGUI,KC_LALT,KC_ESC ,KC_DEL,SALEM,KC_LSFT,KC_LCTL,       KC_RALT, KC_SPC, KC_RSFT, KC_LEFT,KC_DOWN, KC_UP , KC_RGHT,  KC_RCTL,                                                                       
                                                         MONA ,LEVAN ,        KC_BSPC, KC_ENT
                                                                             
     ), 
@@ -159,3 +187,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                
     )                                          
 };
+
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(0, led_state.caps_lock);
+    return true;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(2, layer_state_cmp(state, _SALEM));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _MONA));
+    rgblight_set_layer_state(4, layer_state_cmp(state, _LEVAN));
+    rgblight_set_layer_state(5, layer_state_cmp(state, _BEAVER));
+    rgblight_set_layer_state(6, layer_state_cmp(state, _KANAB));
+    return state;
+}
