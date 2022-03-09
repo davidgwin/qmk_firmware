@@ -30,35 +30,7 @@
 #define KM_DLEFT LGUI(LCTL(KC_LEFT))
 #define KM_DRIGHT LGUI(LCTL(KC_RIGHT))
 
-enum unicode_names {
-    BANG,
-    IRONY,
-    SNEK,
-    THORN_L,
-    THORN_U,
-    GRINF,
-    WINKF,
-    GFWINK, 
-    GFOPEN,
-    GFSLGHT,
-    HORNS
-};
-
-const uint32_t PROGMEM unicode_map[] = {
-    [BANG]  = 0x203,  // D‽
-    [IRONY] = 0x2E2E,  // ⸮
-    [SNEK]  = 0x1F40D, // 🐍
-    [THORN_L] = 0x00FE, // þ
-    [THORN_U] = 0x00DE, // Þ
-    [GRINF] = 0x1F600, //Grinning Face
-    [GFWINK] = 0x1F609, //Winking Face
-    [GFSLGHT] = 0x1F642, //Slightly Smiling Face
-    [HORNS] = 0x1F918 //Sign of the Horns
-    // []0x1F601 //Grinning Face with Smiling Eyes
-
-
-
-};
+    
 
 // Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
@@ -112,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                        KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
         KC_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                        KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                        KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,RCS(KC_ESC) ,KC_DEL,LPURPLE,STL_SPC,CTL_ENT,   LCYAN , KC_SPC, LAZURE ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,KC_RCTL,                                                                       
+        KC_LCTL,KC_LGUI,KC_LALT,C_S_T(KC_ESC) ,KC_DEL,LPURPLE,STL_SPC,CTL_ENT,   LCYAN , KC_SPC, LAZURE ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,KC_RCTL,                                                                       
                                                         LGREEN,LYELLOW,       KC_BSPC, RALT_T(KC_TAB) 
                                                                         
     ), 
