@@ -33,35 +33,27 @@
 #define KM_DRIGHT LGUI(LCTL(KC_RIGHT))
 
 
-
-// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0,8, HSV_RED}       // Light 4 LEDs, starting with LED 6
     // {12, 4, HSV_RED}       // Light 4 LEDs, starting with LED 12
 );
-// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
 const rgblight_segment_t PROGMEM my_layer1_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,0, HSV_BLACK}
+    {2,6, HSV_BLACK}
 );
-// Light LEDs 11 & 12 in purple when keyboard layer 2 is active
 const rgblight_segment_t PROGMEM my_layer2_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,8, HSV_PURPLE}
+    {3,5, HSV_PURPLE}
 );
-// Light LEDs 13 & 14 in green when keyboard layer 3 is active
 const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,8, HSV_GREEN}
+    {4,4, HSV_GREEN}
 );
-// Light LEDs 13 & 14 in green when keyboard layer 4 is active
 const rgblight_segment_t PROGMEM my_layer4_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,8, HSV_YELLOW}
+    {5,3, HSV_YELLOW}
 );
-// Light LEDs 13 & 14 in green when keyboard layer 5 is active
 const rgblight_segment_t PROGMEM my_layer5_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,8, HSV_BLUE}
+    {6,2, HSV_BLUE}
 );
-// Light LEDs 13 & 14 in green when keyboard layer 5 is active
 const rgblight_segment_t PROGMEM my_layer6_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0,8, HSV_SPRINGGREEN}
+    {7,1, HSV_SPRINGGREEN}
 );
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -69,9 +61,9 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_layer1_layer,    // Overrides caps lock layer
     my_layer2_layer,    // Overrides other layers
     my_layer3_layer,     // Overrides other layers
-    my_layer4_layer,    // Overrides other layersCVV
-    my_layer5_layer,    // Overrides other layersCVV
-    my_layer6_layer   // Overrides other layersCVV
+    my_layer4_layer,    // Overrides other layers
+    my_layer5_layer,    // Overrides other layers
+    my_layer6_layer   // Overrides other layers
 );
 
 void keyboard_post_init_user(void) {
@@ -86,51 +78,51 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                                              KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
         KC_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,C_S_T(KC_ESC) ,KC_DEL,LPURPLE,STL_SPC,CTL_ENT,KC_LCTL,       LCYAN ,CTR_ENT,STR_SPC, LAZURE ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,KC_RCTL,                                                                       
+        KC_LCTL,KC_LGUI,KC_LALT,C_S_T(KC_ESC) ,KC_DEL,LPURPLE,STL_SPC,CTL_ENT,KC_BSLS,       LCYAN ,CTR_ENT,STR_SPC, LAZURE ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,KC_RCTL,                                                                       
                                                            LGREEN,LYELLOW,KC_LBRC,              KC_RBRC,RALT_T(KC_TAB),KC_BSPC 
                                                                         
     ), 
     [_LPURPLE] = LAYOUT_6x6(
-        KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                       KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
-        _______,_______,_______,_______,_______,_______,                                                       _______,KC_LCBR,KC_RCBR,KC_EXLM,KC_AT  ,KC_PIPE,
-        _______,_______,_______,_______,_______,_______,                                                       _______,KC_LBRC,KC_RBRC,KC_PERC,KC_CIRC,KC_BSLS,
-        _______,_______,_______,_______,_______,_______,                                                       _______,KC_LPRN,KC_RPRN,KC_HASH,KC_DLR ,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
-                                                        _______,_______,_______,       _______,_______,_______                                             
+        KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LCBR,KC_RCBR,_______,_______,KC_PIPE,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LBRC,KC_RBRC,_______,_______,KC_BSLS,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LPRN,KC_RPRN,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
+                                                        _______,_______,_______,              KC_RCBR,_______,_______                                             
     ),
     [_LGREEN] = LAYOUT_6x6(
-        RGB_TOG,RGB_HUI,_______,KC_BTN3,_______,_______,                                                       _______,_______,_______,_______,_______,_______,
-        RGB_MOD,RGB_SAI,KC_BTN2,KC_UP  ,KC_BTN1,_______,                                                       _______,_______,KC_MS_U,_______,_______,_______,
-        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                       _______,KC_MS_L,KC_MS_D,KC_MS_R,_______,_______,
-        _______,_______,KC_BTN3,KC_BTN2,KC_BTN1,_______,                                                       _______,_______,KC_MSTP,KC_MPLY,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,       _______,KC_WH_L,KC_WH_R,KC_WH_U,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
-                                                        _______,_______,_______,       _______,_______,KC_WH_D
+        RGB_TOG,RGB_HUI,_______,KC_BTN3,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        RGB_MOD,RGB_SAI,KC_BTN2,KC_UP  ,KC_BTN1,_______,                                                              _______,_______,KC_MS_U,_______,_______,_______,
+        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_MS_L,KC_MS_D,KC_MS_R,_______,_______,
+        _______,_______,KC_BTN3,KC_BTN2,KC_BTN1,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,KC_WH_L,KC_WH_R,KC_WH_U,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
+                                                        _______,_______,_______,              _______,_______,KC_WH_D
                                                                               
     ),
-    [_LYELLOW] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,_______,_______,KC_PMNS,KC_PSLS,
-        _______,_______,_______,KC_UP  ,_______,_______,                                                       _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PPLS,KC_PAST,
-        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                       _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PCMM,_______,
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,KC_P0  ,KC_DOT  ,KC_PEQL,KC_PENT,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______ ,_______,_______,
-                                                        _______,_______,_______,       _______,_______,_______
-                                                                               
+    [_LYELLOW] = LAYOUT_6x6([_LAZURE] = LAYOUT_6x6(
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,KC_PMNS,KC_PSLS,
+        _______,_______,_______,KC_UP  ,_______,_______,                                                              _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PPLS,KC_PAST,
+        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PCMM,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_P0  ,KC_P0  ,_______  ,KC_PEQL,KC_PENT,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______ ,_______,_______,
+                                                        _______,_______,_______,              _______,_______,_______
+                                                                            
     ),
-    [_LAZURE] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,KC_UP  ,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                       _______,KC_LEFT,KC_DOWN,KC_RGHT,KC_RCTL,_______,
-        _______,_______,_______,_______,_______,_______,                                                       _______,KM_DLEFT,_______,KM_DRIGHT,KC_RSFT,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,       _______, _______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,_______,       _______,_______,KC_RGUI   
+    
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_UP  ,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LEFT,KC_DOWN,KC_RGHT,KC_RCTL,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,KC_RSFT,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,KC_PIPE,              _______, _______,_______,_______,_______,_______,_______,_______,_______,
+                                                        _______,_______,KC_LCBR,              _______,_______,KC_RGUI   
     ),
     [_LCYAN] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,DM_RSTP,DM_PLY1,DM_PLY2,_______,                                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,DM_RSTP,DM_REC1,DM_REC2,_______,                                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                       _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,       _______,_______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,_______,       _______,_______,_______
+        _______,_______,_______,DM_RSTP,DM_REC1,DM_PLY1,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,DM_RSTP,DM_REC2,DM_PLY2,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______,
+                                                        _______,_______,_______,              _______,_______,_______
                                                                                
     )                                          
 };
