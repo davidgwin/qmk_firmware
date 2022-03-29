@@ -40,7 +40,8 @@
 #define GUI_LEFT LGUI(KC_LEFT)
 #define GUI_RIGHT LGUI(KC_RIGHT)
 #define GUI_L LGUI(KC_L)
-
+#define CTSHESC C_S_T(KC_ESC)
+#define AZ_CAPS LT(_)
 
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0,8, HSV_RED}       // Light 4 LEDs, starting with LED 6
@@ -87,14 +88,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                                              KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
         KC_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,C_S_T(KC_ESC) ,D_AZURE,LPURPLE,STL_SPC,CTL_ENT,KC_BSLS,       LCYAN ,CTR_ENT, STR_SPC,B_AZURE ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,KC_RCTL,                                                                       
+        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,D_AZURE,LPURPLE,STL_SPC,CTL_ENT,KC_BSLS,            LCYAN ,CTR_ENT, STR_SPC,PRPL_BSP ,KC_LEFT,KC_DOWN, KC_UP ,KC_RIGHT,CTR_ENT,                                                                       
                                                            GRN_BSP,LYELLOW,KC_LBRC,             KC_RBRC,RALT_T(KC_PAUS),PRPL_DEL                                                                       
     ), 
     [_LPURPLE] = LAYOUT_6x6(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
-        _______,_______,_______,KC_UP ,_______,_______,                                                               _______,KC_LCBR,KC_RCBR,_______,_______,KC_PIPE,
-        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_LBRC,KC_RBRC,_______,_______,KC_BSLS,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LPRN,KC_RPRN,_______,_______,_______,
+        _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                               _______,_______,_______,_______,_______,KC_PIPE,
+        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,GUI_L  ,_______,KC_BSLS,
+        _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
                                                         _______,_______,_______,              KC_RCBR,_______,_______                                             
     ),c
@@ -108,17 +109,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                               
     ),
     [_LYELLOW] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,KC_PMNS,KC_PSLS,
-        _______,_______,_______,KC_UP  ,_______,_______,                                                              _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PPLS,KC_PAST,
-        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PCMM,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KC_P0  ,KC_P0  ,_______  ,KC_PEQL,KC_PENT,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______ ,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_PSLS,KC_PAST,KC_PMNS,_______,
+        _______,_______,_______,KC_UP  ,_______,_______,                                                              _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
+        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_P0,KC_P0,_______ ,_______,_______,
                                                         _______,_______,_______,              _______,_______,_______                                                                            
     ),
     [_LAZURE] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,GUI_E  ,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,GUI_L  ,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              KC_LEFT,KC_DOWN,KC_UP  ,KC_RIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______, _______,_______,_______,GUI_LEFT,_______,_______,GUI_RIGHT,_______,
                                                         _______,_______,_______,              _______,_______,_______   
