@@ -7,13 +7,17 @@
 #define _LYELLOW 3 
 #define _LAZURE 4 
 #define _LCYAN 5
-
+#define _LSYSL 6
  
 #define LGREEN MO(_LGREEN)
 #define LPURPLE MO(_LPURPLE)
 #define LYELLOW MO(_LYELLOW) 
+#define TGCLMK TG(_COLMAK) 
+#define TYELLOW TG(_LYELLOW) 
 #define LAZURE MO(_LAZURE) 
 #define LCYAN MO(_LCYAN) 
+#define LSYSL MO(_LSYSL) 
+
 
 #define LG_QUOT LGUI_T(KC_QUOT)
 #define RG_CAPS RGUI_T(KC_CAPS)
@@ -84,12 +88,60 @@ void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 };
-enum custom_keycodes { 
-    DAMIT = SAFE_RANGE,
-    BDSPSW, 
-    CURBDS
-};
+// enum custom_keycodes { 
+//     NOVELTY = SAFE_RANGE,
+//     BDSPSW, 
+//     CURBDS,
+//     EMAIL1,
+//     EMAIL2,
+//     EMAIL3
+// };
 
+enum combos {
+  DF_COMB,
+  SD_COMB,
+  JK_COMB,
+  KL_COMB,
+  E1_COMB,
+  E2_COMB,
+  E3_COMB,   
+  XC_COMB,
+  VC_COMB,
+  MCM_COMB,
+  CMDT_COMB,
+  SYSL_COMB,
+  COMBO_LENGTH
+}; 
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM e1_combo[] = {KC_E, KC_1, COMBO_END};
+// const uint16_t PROGMEM e2_combo[] = {KC_E, KC_2, COMBO_END};
+// const uint16_t PROGMEM e3_combo[] = {KC_E, KC_3, COMBO_END};
+const uint16_t PROGMEM xc_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM mcm_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM cmdt_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM sysl_combo[] = {KC_GRAVE, KC_1, KC_2, COMBO_END};
+
+combo_t key_combos[] = {
+  [DF_COMB] = COMBO(df_combo, LCTL(KC_LALT)),
+  [SD_COMB] = COMBO(sd_combo, LCTL(KC_LSFT)),
+  [JK_COMB] = COMBO(jk_combo, RCTL(KC_RALT)),
+  [KL_COMB] = COMBO(kl_combo, RCTL(KC_RSFT)),
+//   [E1_COMB] = COMBO(e1_combo, EMAIL1),
+//   [E2_COMB] = COMBO(e2_combo, EMAIL2),
+//   [E3_COMB] = COMBO(e3_combo, EMAIL3),
+//   [E3_COMB] = COMBO(e3_combo, EMAIL3),
+  [XC_COMB] = COMBO(xc_combo, LYELLOW),
+  [VC_COMB] = COMBO(cv_combo, LGREEN),
+  [MCM_COMB] = COMBO(mcm_combo, LGREEN),
+  [CMDT_COMB] = COMBO(cmdt_combo, LYELLOW),
+  [SYSL_COMB] = COMBO(sysl_combo, LSYSL),
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_6x6(
@@ -97,84 +149,96 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                                              KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
         AZ_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,KC_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,D_AZURE,LPURPLE,STL_SPC,CTL_ENT,KC_DOWN,            KC_UP  ,CTR_ENT, STR_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,                                                                       
-                                                        GRN_BSP,LYELLOW,KC_LEFT,         KC_RIGHT,LGREEN,YEL_DEL                                                                       
+        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,D_AZURE,PRPL_BSP,STL_SPC,CTL_ENT,KC_DOWN,            KC_UP  ,CTR_ENT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,                                                                       
+                                                        YEL_DEL,LGREEN,KC_LEFT,             KC_RIGHT,LGREEN  ,YEL_DEL                                                                       
     ), 
     [_LPURPLE] = LAYOUT_6x6(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
-        _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                               _______,_______,_______,_______,_______,KC_PIPE,
-        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,GUI_L  ,_______,KC_BSLS,
+        _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                              _______,_______,_______,_______,_______,KC_PIPE,
+        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,_______,_______,KC_BSLS,
         _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
-        _______,_______,_______,_______,_______,LCYAN,_______,_______,_______,              _______,_______,_______,LCYAN,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
+        _______,_______,_______,_______,_______,TYELLOW,_______,_______,_______,              _______,_______,_______,TYELLOW,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
                                                         _______,_______,_______,              _______,_______,_______                                             
     ),
     [_LGREEN] = LAYOUT_6x6(
-        RGB_TOG,RGB_HUI,_______,KC_BTN3,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        RGB_MOD,RGB_SAI,KC_BTN2,KC_UP  ,KC_BTN1,_______,                                                              _______,_______,KC_MS_U,_______,_______,_______,
-        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_MS_L,KC_MS_D,KC_MS_R,_______,_______,
-        _______,_______,KC_BTN3,KC_BTN2,KC_BTN1,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,KC_WH_L,KC_WH_R,KC_WH_U,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
-                                                        _______,_______,_______,              _______,_______,KC_WH_D
+        RGB_TOG,RGB_HUI,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        RGB_MOD,RGB_SAI,_______,KC_UP  ,_______,_______,                                                              _______,_______,KC_UP,_______,_______,_______,
+        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_LEFT,KC_DOWN,KC_RGHT,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
+                                                        _______,_______,_______,              _______,_______,_______
                                                                               
     ),
     [_LYELLOW] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_PSLS,KC_PAST,KC_PMNS,_______,
-        _______,_______,_______,KC_UP  ,_______,_______,                                                              _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
-        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_P0,KC_P0,_______ ,_______,_______,
+        DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                             KC_SCRL,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS,_______,
+        _______,DM_REC1,DM_REC1,KC_UP  ,_______,_______,                                                             _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
+        _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                             _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
+        _______,_______,_______,_______,_______,_______,                                                             _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_P0 ,KC_P0  ,KC_DOT ,KC_ENT,_______,
                                                         _______,_______,_______,              _______,_______,_______                                                                            
     ),
     [_LAZURE] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_UP  ,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______, _______,_______,_______,GUI_LEFT,_______,_______,GUI_RIGHT,_______,
-                                                        _______,_______,_______,              _______,_______,_______   
+        _______,_______,_______,_______,_______,_______,                                                      _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                      _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                      _______,KC_RSFT,KC_RCTL,KC_RALT,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                      _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______,
+                                                        _______,_______,_______,              _______,_______,_______  
     ),
     [_LCYAN] = LAYOUT_6x6(
-        DAMIT,BDSPSW,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                             _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                             _______,_______,_______,_______,_______,_______,
+        _______,_______,KC_LALT,KC_LCTL,KC_LSFT,_______,                                                             _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                             _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______, 
+                                                        _______,_______,_______,              _______,_______,_______                            
+    ),
+    [_LSYSL] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,RESET  ,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,DM_PLY1,              DM_PLY2,_______,_______,_______,_______,CURBDS,_______,_______,_______,
-                                                        _______,DM_RSTP,DM_REC1,              DM_REC2,DM_RSTP,_______                                                                               
-    )                                          
+        _______,_______,_______,_______,_______,_______,                                                             _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______ ,
+                                                        _______,_______,_______,              _______,_______,_______                            
+    )
+            
+                                                
 };
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) 
-    {
-        case DAMIT:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) 
+//     {
+//         case NOVELTY:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-        case BDSPSW:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+//         case BDSPSW:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-        case CURBDS:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+//         case CURBDS:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-    }
-    return true;
-};
+//     }
+//     return true;
+// };
 
 bool led_update_user(led_t led_state) {
     rgblight_set_layer_state(0, led_state.caps_lock);
