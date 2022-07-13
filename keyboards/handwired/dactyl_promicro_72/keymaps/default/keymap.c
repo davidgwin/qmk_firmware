@@ -7,13 +7,17 @@
 #define _LYELLOW 3 
 #define _LAZURE 4 
 #define _LCYAN 5
-
+#define _LSYSL 6
  
 #define LGREEN MO(_LGREEN)
 #define LPURPLE MO(_LPURPLE)
 #define LYELLOW MO(_LYELLOW) 
+#define TGCLMK TG(_COLMAK) 
+#define TYELLOW TG(_LYELLOW) 
 #define LAZURE MO(_LAZURE) 
 #define LCYAN MO(_LCYAN) 
+#define LSYSL MO(_LSYSL) 
+
 
 #define LG_QUOT LGUI_T(KC_QUOT)
 #define RG_CAPS RGUI_T(KC_CAPS)
@@ -91,14 +95,60 @@ void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 };
+ 
+// enum custom_keycodes { 
+//     NOVELTY = SAFE_RANGE,
+//     BDSPSW, 
+//     CURBDS,
+//     EMAIL1,
+//     EMAIL2,
+//     EMAIL3
+// };
 
+enum combos {
+  DF_COMB,
+  SD_COMB,
+  JK_COMB,
+  KL_COMB,
+  E1_COMB,
+  E2_COMB,
+  E3_COMB,   
+  XC_COMB,
+  VC_COMB,
+  MCM_COMB,
+  CMDT_COMB,
+  SYSL_COMB,
+  COMBO_LENGTH
+}; 
+uint16_t COMBO_LEN = COMBO_LENGTH;
+const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM e1_combo[] = {KC_E, KC_1, COMBO_END};
+// const uint16_t PROGMEM e2_combo[] = {KC_E, KC_2, COMBO_END};
+// const uint16_t PROGMEM e3_combo[] = {KC_E, KC_3, COMBO_END};
+const uint16_t PROGMEM xc_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM mcm_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM cmdt_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM sysl_combo[] = {KC_GRAVE, KC_1, KC_2, COMBO_END};
 
-enum custom_keycodes { 
-    DAMIT = SAFE_RANGE,
-    BDSPSW, 
-    CURBDS
+combo_t key_combos[] = {
+  [DF_COMB] = COMBO(df_combo, LCTL(KC_LALT)),
+  [SD_COMB] = COMBO(sd_combo, LCTL(KC_LSFT)),
+  [JK_COMB] = COMBO(jk_combo, RCTL(KC_RALT)),
+  [KL_COMB] = COMBO(kl_combo, RCTL(KC_RSFT)),
+//   [E1_COMB] = COMBO(e1_combo, EMAIL1),
+//   [E2_COMB] = COMBO(e2_combo, EMAIL2),
+//   [E3_COMB] = COMBO(e3_combo, EMAIL3),
+//   [E3_COMB] = COMBO(e3_combo, EMAIL3),
+  [XC_COMB] = COMBO(xc_combo, LYELLOW),
+  [VC_COMB] = COMBO(cv_combo, LGREEN),
+  [MCM_COMB] = COMBO(mcm_combo, LGREEN),
+  [CMDT_COMB] = COMBO(cmdt_combo, LYELLOW),
+  [SYSL_COMB] = COMBO(sysl_combo, LSYSL),
 };
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_6x6(
@@ -108,6 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
         CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP,STL_SPC,CTL_ENT,KC_DOWN,            KC_UP  ,CTR_ENT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,                                                                       
                                                         LGREEN,LYELLOW,KC_DEL,              KC_ENT,LYELLOW ,LGREEN                                                                      
+
     ), 
     [_LPURPLE] = LAYOUT_6x6(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
@@ -151,39 +202,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,_______,_______,              _______,_______,_______                                                                               
     )                                          
 };
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) 
-    {
-        case DAMIT:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) 
+//     {
+//         case NOVELTY:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-        case BDSPSW:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+//         case BDSPSW:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-        case CURBDS:
-            if (record->event.pressed) {
-                // when keycode QMKBEST is pressed
-                SEND_STRING("");
-            } else {
-                // when keycode QMKBEST is released
-            }
-            break;
+//         case CURBDS:
+//             if (record->event.pressed) {
+//                 // when keycode QMKBEST is pressed
+//                 SEND_STRING("");
+//             } else {
+//                 // when keycode QMKBEST is released
+//             }
+//             break;
         
-    }
-    return true;
-};
+//     }
+//     return true;
+// };
 
 bool led_update_user(led_t led_state) 
 {
