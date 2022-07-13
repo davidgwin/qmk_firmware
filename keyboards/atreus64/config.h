@@ -47,9 +47,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_RESYNC_ENABLE
 
 // #define OLED_FONT_H drivers/oled/gwin_font.c
-#define OLED_FADE_OUT_INTERVAL 10
+#define OLED_FADE_OUT
+#define OLED_FADE_OUT_INTERVAL 15
 #define OLED_UPDATE_INTERVAL 100
-
+#define OLED_TIMEOUT 60000
 // Length in milliseconds for a combo to be recognized.
 #define COMBO_TERM 40
 #define COMBO_MUST_HOLD_MODS

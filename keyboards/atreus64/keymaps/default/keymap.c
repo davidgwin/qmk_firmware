@@ -2,6 +2,7 @@
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
 #include QMK_KEYBOARD_H
+#include "progmem.h" 
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -240,95 +241,231 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 //     oled_write_P(qmk_logo, false);
 // };
+// static void fade_display(void)
+// {
+        
+//     static const char PROGMEM gwinworld1[] = 
+//     {
+//          0x93,0x93, 0x94,0x95, 0x96,0x97, 0x98,0x99, 0x9A,0x9B, 0x9C, 0x9D,0x9E, 0x9F, 0x00
+//     };
+//     static const char PROGMEM gwinworld2[] = 
+//     {
+//          0x93,0x93, 0xA0,0xA1, 0xA2,0xA3, 0xA4,0xA5, 0xA6,0xA7, 0xA8,0xA9, 0xAA,0xAB,0x93, 0x00
+//     };
+
+//      oled_write_P(PSTR("  ") , false);
+//      oled_write_ln_P(gwinworld1, false);
+//      oled_write_ln_P(gwinworld2, false);
+// };
 
 bool oled_task_user(void) 
 {
     // Host Keyboard Layer Status
     static const char PROGMEM scroll_lock1[] = 
     {
-       0x8C, 0x8D, 0x8E, 0x00
+       0x80, 0x81, 0x00
     }; 
     static const char PROGMEM scroll_lock2[] = 
     {
-       0xAC, 0xAD, 0xAE,  0x00
+       0x86, 0x87,  0x00
     };  
     static const char PROGMEM num_lock1[] = 
     {
-        0x8F, 0x90, 0x00
+        0x82, 0x83, 0x00
     };  
     static const char PROGMEM num_lock2[] = 
     {
-        0xAF, 0xB0, 0x00
+        0x88, 0x89, 0x00
     };  
     static const char PROGMEM caps_lock1[] = 
     {
-        0x91, 0x92, 0x93,  0x00
+        0x84, 0x85, 0x00
     };  
     static const char PROGMEM caps_lock2[] = 
     {
-        0xB1, 0xB2, 0xB3,  0x00
+        0x8A, 0x8B, 0x00
     };  
     static const char PROGMEM qmk_logo1[] = 
     {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x83, 0x00
+        0x8C, 0x8D, 0x8E, 0x20, 0x00
     };
 
     static const char PROGMEM qmk_logo2[] = 
     {
-        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0x83, 0x00
+         0x8F,0x90, 0x91, 0x92, 0x00
      };
-
-    static const char PROGMEM qmk_logo3[] = 
-    {
-        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0x83, 0x00
-    };
     // Host Keyboard LED Status
     led_t led_state = host_keyboard_led_state();
     oled_write_P(qmk_logo1, false);
-    oled_write_P(led_state.scroll_lock ? scroll_lock1 : PSTR("   "), false);
+    //11 chars go here. 
+    if(layer_state & 2) 
+    { 
+            oled_write_P(PSTR("  Colmak   "), false);
+    }
+    else 
+    {
+            oled_write_P(PSTR("  Qwerty   "), false);
+    }
+    oled_write_P(led_state.scroll_lock ? scroll_lock1 : PSTR("  "), false);
     oled_write_P(led_state.num_lock ? num_lock1 : PSTR("  "), false);
-    oled_write_P(led_state.caps_lock ? caps_lock1 : PSTR("   "), false);
+    oled_write_P(led_state.caps_lock ? caps_lock1 : PSTR("  "), false);
     oled_write_P(qmk_logo2, false);
-    oled_write_P(led_state.scroll_lock ? scroll_lock2 : PSTR("   "), false);
-    oled_write_P(led_state.num_lock ? num_lock2 : PSTR("  "), false);
-    oled_write_P(led_state.caps_lock ? caps_lock2 : PSTR("   "), false);
-    oled_write_ln_P(qmk_logo3, false);
 
+    
+    //11 chars go here. 
     switch (get_highest_layer(layer_state)) 
     {
-        case _QWERTY:
-            oled_write_P(PSTR(" Qwerty \n"), false);
-            break;
-        case _COLMAK:
-            oled_write_P(PSTR(" Colmak \n"), false);
-            break;
+        
         case _LPURPLE:
-            oled_write_P(PSTR(" Purple \n"), false);
+            oled_write_P(PSTR("  Purple   "), false);
             break;
-
         case _LGREEN:
-            oled_write_P(PSTR(" Green  \n"), false);
+            oled_write_P(PSTR("  Green    "), false);
             break;
         case _LYELLOW:
-            oled_write_P(PSTR(" Yellow \n"), false);
+            oled_write_P(PSTR("  Yellow   "), false);
             break;
         case _LAZURE:
-            oled_write_P(PSTR(" Azure  \n"), false);
+            oled_write_P(PSTR("  Azure    "), false);
             break;
         case _LCYAN:
-            oled_write_P(PSTR(" Cyan   \n"), false);
+            oled_write_P(PSTR("  Cyan     "), false);
             break;
         case _LSYSL:
-            oled_write_P(PSTR(" System \n"), false);
+            oled_write_P(PSTR("  System   "), false);
             break;
         default:
-            // Or use the write_ln shortcut over adding '\n' to the end of your string
-            oled_write_P(PSTR(" NONE   \n"), false);
+        
+            oled_write_P(PSTR("           "), false);
     }
 
 
+    oled_write_P(led_state.scroll_lock ? scroll_lock2 : PSTR("  "), false);
+    oled_write_P(led_state.num_lock ? num_lock2 : PSTR("  "), false);
+    oled_write_P(led_state.caps_lock ? caps_lock2 : PSTR("  "), false);
+
+    static const char PROGMEM zero[] = {0x30, 0x00};
+    static const char PROGMEM one[] = {0x31, 0x00};
+    static const char PROGMEM two[] = {0x32, 0x00}; 
+    static const char PROGMEM three[] = {0x33, 0x00};
+    static const char PROGMEM four[] = {0x34, 0x00};
+    static const char PROGMEM five[] = {0x35, 0x00};
+    static const char PROGMEM six[] = {0x36, 0x00};
+    static const char PROGMEM seven[] = {0x37, 0x00};
+    static const char PROGMEM eight[] = {0x38, 0x00};
+    static const char PROGMEM nine[] = {0x39, 0x00};
+    static const char PROGMEM bar1[] = {0x01, 0x00};
+    static const char PROGMEM bar2[] = {0x02, 0x00};
+    static const char PROGMEM bar3[] = {0x03, 0x00};
+    static const char PROGMEM bar4[] = {0x04, 0x00};
+    static const char PROGMEM bar5[] = {0x05, 0x00};
+    static const char PROGMEM bar6[] = {0x06, 0x00};
+    static const char PROGMEM bar7[] = {0x07, 0x00};
+    static const char PROGMEM bar8[] = {0x08, 0x00};
+    static const char PROGMEM bar9[] = {0x09, 0x00};
+    static const char PROGMEM bar10[] = {0x0B, 0x00};
+    static const char PROGMEM bar11[] = {0x0C, 0x00};
+    static const char PROGMEM bar12[] = {0x0E, 0x00};
+    
+    
 
     
+    // short wpm = 255;
+    
+    short wpm = get_current_wpm();
+    float wpmb = wpm;    
+    // oled_write_P( num_lock2 , false);
+    // oled_write_P( caps_lock2, false);
+    oled_write_P(PSTR(" WPM: "), false);
+    short mod = 100;
+    
+    for(short i=0; i<3; i++) 
+    { 
+        short x = wpm / mod;
+        wpm = wpm - x * mod;
+        
+            switch (x)
+            {
+                case 0:        
+                    oled_write_P( zero, false);
+                    break;
+                
+                case 1:
+                    oled_write_P( one, false);
+                    break;
+                
+                case 2:
+                    oled_write_P(two, false) ;
+                    break;
+                
+                case 3:
+                    oled_write_P(three, false);
+                    break;
+                
+                case 4:
+                    oled_write_P(four, false) ;
+                    break;
+                
+                case 5:
+                    oled_write_P(five, false) ;
+                    break;
+                
+                case 6:
+                    oled_write_P(six, false) ;
+                    break;
+                
+                case 7:
+                    oled_write_P(seven, false);
+                    break;
+                
+                case 8:
+                    oled_write_P(eight, false);
+                    break;
+                
+                case 9:
+                    oled_write_P(nine, false);
+                    break;
+                
+                
+                default:
+                    break;
+            }
+            mod = mod / 10;            
+    
+    }
+    oled_write_ln_P( PSTR(" ") , false); 
+    if(wpmb > 114){
+        wpmb -= 114;
+        for (short i=0; i<19; i++)
+        {
+            if(wpmb > 5) oled_write_P( bar12, false);
+            else if(wpmb == 5) oled_write_P( bar11, false);
+            else if(wpmb == 4) oled_write_P( bar10 , false);
+            else if(wpmb == 3) oled_write_P( bar9, false);
+            else if(wpmb == 2) oled_write_P( bar8, false);
+            else if(wpmb == 1) oled_write_P( bar7, false);
+            else if(wpmb < 1) oled_write_P( bar6, false);
+            wpmb -= 6;
+        }
+    }
+    else{
+        for (short i=0; i<19; i++)
+        {
+            if(wpmb > 5) oled_write_P( bar6, false);
+            else if(wpmb == 5) oled_write_P( bar5 , false);
+            else if(wpmb == 4) oled_write_P( bar4 , false);
+            else if(wpmb == 3) oled_write_P( bar3, false);
+            else if(wpmb == 2) oled_write_P( bar2, false);
+            else if(wpmb == 1) oled_write_P( bar1, false);
+            else if(wpmb < 1) oled_write_P(PSTR(" ") , false);
+            wpmb -= 6;
+        }
+    }
+    // oled_write_P( caps_lock2, false);
+    // oled_write_ln_P(qmk_logo3, false);
+
+
+        
     return false;
 };
 
