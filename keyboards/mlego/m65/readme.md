@@ -135,10 +135,7 @@ the pinout is the same for stm32f411
 | ----------- | --- |
 | NUM_LOCK    | B12 |
 | CAPS_LOCK   | C13 |
-| SCROLL_LOCK | B13 |
-| RBG_DI      | B15 |
-
-## Pins and leds rev4 stm32f401
+| SCROLL_LOCK | B13 |stm32f401stm32f401
 
 the pinout is the same for stm32f411
 
