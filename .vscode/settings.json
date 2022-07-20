@@ -23,7 +23,8 @@
         "string_view": "c",
         "initializer_list": "c",
         "regex": "c",
-        "chrono": "c"
+        "chrono": "c",
+        "limits": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
