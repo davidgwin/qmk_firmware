@@ -3,6 +3,8 @@
 
 #include QMK_KEYBOARD_H
 #include "progmem.h" 
+#include <stdio.h>
+
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -38,6 +40,8 @@
 #define STR_SPC RSFT_T(KC_SPC)
 #define LVN_ESC LT(_LYELLOW, KC_ESC) 
 #define D_AZURE LT(_LAZURE, KC_DEL)
+#define E_AZURE LT(_LAZURE, KC_ENT)
+#define D_CYAN LT(_LCYAN, KC_DEL)
 #define B_AZURE LT(_LAZURE, KC_BSPC)
 #define K_CYAN  LT(_LCYAN, KC_K)
 #define FLPURPLE LT(_LPURPLE, KC_F)
@@ -102,10 +106,10 @@ const uint16_t PROGMEM cmdt_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM sysl_combo[] = {KC_GRAVE, KC_1, KC_2, COMBO_END};
 
 combo_t key_combos[] = {
-  [DF_COMB] = COMBO(df_combo, LCTL(KC_LALT)),
-  [SD_COMB] = COMBO(sd_combo, LCTL(KC_LSFT)),
-  [JK_COMB] = COMBO(jk_combo, RCTL(KC_RALT)),
-  [KL_COMB] = COMBO(kl_combo, RCTL(KC_RSFT)),
+  [DF_COMB] = COMBO(df_combo, LCTL(KC_LSFT)),
+  [SD_COMB] = COMBO(sd_combo, LCTL(KC_LALT)),
+  [JK_COMB] = COMBO(jk_combo, RCTL(KC_RSFT)),
+  [KL_COMB] = COMBO(kl_combo, RCTL(KC_RALT)),
   [E1_COMB] = COMBO(e1_combo, EMAIL1),
   [E2_COMB] = COMBO(e2_combo, EMAIL2),
   [E3_COMB] = COMBO(e3_combo, EMAIL3),
@@ -121,9 +125,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT( /* qwerty */
       KC_GRAVE, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS ,
       KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_EQL ,
-      GRN_CAP,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT ,
+      STL_CAP,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT ,
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                         KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT ,
-      CTL_ENT,  KC_LGUI, KC_LALT, LVN_ESC,GRN_DEL,PRPL_BSP,STL_SPC,LCYAN,         LAZURE ,KC_SPC,PRPL_BSP, GRN_DEL,   KC_LBRC, KC_RBRC, KC_BSLS, CTL_ENT
+      CTL_ENT,  KC_LGUI, KC_LALT, LVN_ESC,LGREEN,PRPL_BSP,STL_SPC,D_CYAN,         LAZURE ,KC_SPC,PRPL_BSP, LGREEN,   KC_LBRC, KC_RBRC, KC_BSLS, CTR_ENT
     ),
     [_COLMAK] = LAYOUT( 
       _______,_______,_______,_______,_______,_______,                                                _______,_______,_______,_______,_______,_______,
@@ -134,17 +138,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LPURPLE] = LAYOUT(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                               KC_F6  ,KC_F7   ,KC_F8  ,KC_F9    ,KC_F10 ,KC_F11 ,
-        NOVELTY,BDSPSW,CURBDS ,_______,_______,_______,                                                _______,_______ ,_______,_______  ,_______,KC_PIPE,
-        _______,_______,_______,_______,_______,_______,                                               _______,_______ ,_______,_______  ,_______,KC_BSLS,
-        _______,_______,_______,_______,_______,_______,                                               _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
+        _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                _______,_______ ,_______,_______  ,_______,KC_PIPE,
+        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                               _______,_______ ,_______,_______  ,_______,KC_BSLS,
+        _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                               _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______  ,KC_HOME ,KC_PGDN,KC_PGUP  ,KC_END ,_______
                                                                                                               
     ),
     [_LGREEN] = LAYOUT(
-        NOVELTY,_______,_______,_______,_______,_______,                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                              _______,_______,KC_UP,  _______,KC_MPLY,_______,
-        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                              _______,KC_LEFT,KC_DOWN,KC_RGHT,KC_MSTP,_______,
-        _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                              _______,_______,_______,_______,_______,CMB_TOG,
+        _______,_______,_______,_______,_______,_______,                                              _______,_______,_______,_______,_______,_______,
+        NOVELTY,BDSPSW ,CURBDS ,_______,_______,_______,                                              _______,_______,KC_UP,  _______,KC_MPLY,_______,
+        _______,_______,_______,_______,_______,_______,                                              _______,KC_LEFT,KC_DOWN,KC_RGHT,KC_MSTP,_______,
+        _______,_______,_______,_______,_______,_______,                                              _______,_______,_______,_______,_______,CMB_TOG,
         _______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______
                                                                               
     ),
@@ -153,27 +157,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,                                               _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
         _______,_______,KC_LEFT,KC_UP,KC_RGHT  ,_______,                                               _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
         _______,_______,_______,KC_DOWN,_______,_______,                                               _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,               TYELLOW,_______,_______,KC_P0  ,KC_P0  ,KC_DOT ,KC_ENT ,_______                             
+        _______,_______,_______,_______,_______,_______,_______,_______,               _______,_______,_______,_______,KC_P0  ,KC_PDOT,KC_PENT ,_______                             
     ),
     [_LAZURE] = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,KC_RSFT,KC_RCTL,KC_RALT,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,TYELLOW,               _______,KC_ENT ,_______,_______,_______,_______,_______,_______
+        _______,_______,_______,_______,_______,_______,_______,_______,               _______,_______ ,_______,_______,_______,_______,_______,_______
     ),
     [_LCYAN] = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,KC_LALT,KC_LCTL,KC_LSFT,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,KC_ENT ,_______,               TYELLOW,_______,_______,_______,_______,_______,_______,_______                           
+        _______,_______,_______,_______,_______,_______,_______ ,_______,               _______,_______,_______,_______,_______,_______,_______,_______                           
     ),
     [_LSYSL] = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,RESET  ,_______,                                               _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                               _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,TGCLMK  ,_______,_______,                                               _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,TGCLMK  ,_______,_______,                                               NK_TOGG,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,               _______,_______,_______,_______,_______,_______,_______,_______                           
     )
 }; 
@@ -190,8 +194,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case BDSPSW:
             if (record->event.pressed) {
-                SEND_STRING(""); 
-            } else {
+                SEND_STRING("");
             }
             break;
         
@@ -205,14 +208,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case EMAIL1:
             if (record->event.pressed) {
-                SEND_STRING("");
+                SEND_STRING("david@gwin.world");
             } else {
               
             }
             break;
         case EMAIL2:
             if (record->event.pressed) {
-                SEND_STRING("");
+                SEND_STRING("david.gwin@bestdealspring.com");
             } else {
               
             }
@@ -220,7 +223,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         
         case EMAIL3:
             if (record->event.pressed) {
-                SEND_STRING("");
+                SEND_STRING("davidgwin123@gmail.com");
             } else {
               
             }
@@ -243,89 +246,90 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // };
 static short max_wpm = 0, reset = 0, count = 0;
 static short average[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-short writeInt(short input)
-{
-    static const char PROGMEM zero[] = {0x30, 0x00};
-    static const char PROGMEM one[] = {0x31, 0x00};
-    static const char PROGMEM two[] = {0x32, 0x00}; 
-    static const char PROGMEM three[] = {0x33, 0x00};
-    static const char PROGMEM four[] = {0x34, 0x00};
-    static const char PROGMEM five[] = {0x35, 0x00};
-    static const char PROGMEM six[] = {0x36, 0x00};
-    static const char PROGMEM seven[] = {0x37, 0x00};
-    static const char PROGMEM eight[] = {0x38, 0x00};
-    static const char PROGMEM nine[] = {0x39, 0x00};
+char strbuf[10];
+// short writeInt(short input)
+// {
+//     static const char PROGMEM zero[] = {0x30, 0x00};
+//     static const char PROGMEM one[] = {0x31, 0x00};
+//     static const char PROGMEM two[] = {0x32, 0x00}; 
+//     static const char PROGMEM three[] = {0x33, 0x00};
+//     static const char PROGMEM four[] = {0x34, 0x00};
+//     static const char PROGMEM five[] = {0x35, 0x00};
+//     static const char PROGMEM six[] = {0x36, 0x00};
+//     static const char PROGMEM seven[] = {0x37, 0x00};
+//     static const char PROGMEM eight[] = {0x38, 0x00};
+//     static const char PROGMEM nine[] = {0x39, 0x00};
 
-    short mod = 1;
-    short digits = 0, md = 0;
-    short begin = 3;
-    if(input > md) do { 
-        md =( md * 10) + 9;
-        ++digits;
-        mod *=  10;
-    } while(input > md);
+//     short mod = 1;
+//     short digits = 0, md = 0;
+//     short begin = 3;
+//     if(input > md) do { 
+//         md =( md * 10) + 9;
+//         ++digits;
+//         mod *=  10;
+//     } while(input > md);
     
-    begin = begin - digits;
-    digits = 3;
-    for(short i=0; i< digits; i++) 
-    { 
-        short x = input / mod;
-        input = input - x * mod;
-        if( begin > 0 )
-        {
-            oled_write_P(PSTR(" "), false);
-            --begin;
-        }
-        else
-        switch (x)
-        {
-            case 0:        
-                oled_write_P( zero, false);
-                break;
+//     begin = begin - digits;
+//     digits = 3;
+//     for(short i=0; i< digits; i++) 
+//     { 
+//         short x = input / mod;
+//         input = input - x * mod;
+//         if( begin > 0 )
+//         {
+//             oled_write_P(PSTR(" "), false);
+//             --begin;
+//         }
+//         else
+//         switch (x)
+//         {
+//             case 0:        
+//                 oled_write_P( zero, false);
+//                 break;
             
-            case 1:
-                oled_write_P( one, false);
-                break;
+//             case 1:
+//                 oled_write_P( one, false);
+//                 break;
             
-            case 2:
-                oled_write_P(two, false) ;
-                break;
+//             case 2:
+//                 oled_write_P(two, false) ;
+//                 break;
             
-            case 3:
-                oled_write_P(three, false);
-                break;
+//             case 3:
+//                 oled_write_P(three, false);
+//                 break;
             
-            case 4:
-                oled_write_P(four, false) ;
-                break;
+//             case 4:
+//                 oled_write_P(four, false) ;
+//                 break;
             
-            case 5:
-                oled_write_P(five, false) ;
-                break;
+//             case 5:
+//                 oled_write_P(five, false) ;
+//                 break;
             
-            case 6:
-                oled_write_P(six, false) ;
-                break;
+//             case 6:
+//                 oled_write_P(six, false) ;
+//                 break;
             
-            case 7:
-                oled_write_P(seven, false);
-                break;
+//             case 7:
+//                 oled_write_P(seven, false);
+//                 break;
             
-            case 8:
-                oled_write_P(eight, false);
-                break;
+//             case 8:
+//                 oled_write_P(eight, false);
+//                 break;
             
-            case 9:
-                oled_write_P(nine, false);
-                break;
+//             case 9:
+//                 oled_write_P(nine, false);
+//                 break;
                 
-        }
+//         }
 
-            mod = mod / 10;            
+//             mod = mod / 10;            
     
-    }
-    return digits;
-}
+//     }
+//     return digits;
+// }
 
 bool oled_task_user(void) 
 {
@@ -483,11 +487,16 @@ bool oled_task_user(void)
     // oled_write_P( caps_lock2, false);
 
     oled_write_P(PSTR("WPM Av: "), false);
-    writeInt(ave);
+    // writeInt(ave);
+    sprintf(strbuf, "%3d", ave);
+    oled_write_P(PSTR( strbuf), false);
     oled_write_P(PSTR(" Pk: "), false);
-    writeInt(max_wpm);
-    oled_write_ln_P(PSTR(" "), false);
-    writeInt(wpm);
+    // writeInt(max_wpm);
+    sprintf(strbuf, "%3d\n", max_wpm); 
+    oled_write_P(PSTR( strbuf), false);
+    // writeInt(wpm);
+    sprintf(strbuf, "%3d", wpm); 
+    oled_write_P(PSTR( strbuf), false);
     
     // oled_write_ln_P( PSTR(" ") , false); 
     if(wpmb > 168){
