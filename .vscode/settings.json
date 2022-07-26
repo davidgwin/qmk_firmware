@@ -24,7 +24,8 @@
         "initializer_list": "c",
         "regex": "c",
         "chrono": "c",
-        "limits": "c"
+        "limits": "c",
+        "variant": "c"
     },
     "[markdown]": {
         "editor.trimAutoWhitespace": false,
