@@ -72,7 +72,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define I2C1_SCL_PIN        B9
 #define I2C1_SDA_PIN        B8
 #define OLED_BRIGHTNESS 128
-#define OLED_FONT_H "keyboards/atreus64stm32f401/glcdfont.c"
+#define OLED_FONT_H "keyboards/atreus64stm32f401/atreus64stm_font.c"
 #define OLED_FADE_OUT
 #define OLED_FADE_OUT_INTERVAL 15
 #define OLED_UPDATE_INTERVAL 100
