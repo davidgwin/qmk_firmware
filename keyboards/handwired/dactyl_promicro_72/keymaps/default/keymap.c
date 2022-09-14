@@ -4,19 +4,19 @@
 #define _QWERTY 0
 #define _LPURPLE 1
 #define _LGREEN 2
-#define _LYELLOW 3 
-#define _LAZURE 4 
+#define _LYELLOW 3
+#define _LAZURE 4
 #define _LCYAN 5
 #define _LSYSL 6
- 
+
 #define LGREEN MO(_LGREEN)
 #define LPURPLE MO(_LPURPLE)
-#define LYELLOW MO(_LYELLOW) 
-#define TGCLMK TG(_COLMAK) 
-#define TYELLOW TG(_LYELLOW) 
-#define LAZURE MO(_LAZURE) 
-#define LCYAN MO(_LCYAN) 
-#define LSYSL MO(_LSYSL) 
+#define LYELLOW MO(_LYELLOW)
+#define TGCLMK TG(_COLMAK)
+#define TYELLOW TG(_LYELLOW)
+#define LAZURE MO(_LAZURE)
+#define LCYAN MO(_LCYAN)
+#define LSYSL MO(_LSYSL)
 
 
 // #define LG_QUOT LGUI_T(KC_QUOT)
@@ -27,7 +27,7 @@
 // #define CTR_SPC RCTL_T(KC_SPC)
 #define STL_SPC LSFT_T(KC_SPC)
 // #define STR_SPC RSFT_T(KC_SPC)
-// #define LVN_ESC LT(_LYELLOW, KC_ESC) 
+// #define LVN_ESC LT(_LYELLOW, KC_ESC)
 // #define D_AZURE LT(_LAZURE, KC_DEL)
 // #define B_AZURE LT(_LAZURE, KC_BSPC)
 #define CY_QUOT LT(_LCYAN, KC_QUOT)
@@ -95,10 +95,10 @@ void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
 };
- 
-// enum custom_keycodes { 
+
+// enum custom_keycodes {
 //     NOVELTY = SAFE_RANGE,
-//     BDSPSW, 
+//     BDSPSW,
 //     CURBDS,
 //     EMAIL1,
 //     EMAIL2,
@@ -112,14 +112,14 @@ void keyboard_post_init_user(void) {
 //   KL_COMB,
 //   E1_COMB,
 //   E2_COMB,
-//   E3_COMB,   
+//   E3_COMB,
 //   XC_COMB,
 //   VC_COMB,
 //   MCM_COMB,
 //   CMDT_COMB,
 //   SYSL_COMB,
 //   COMBO_LENGTH
-// }; 
+// };
 // uint16_t COMBO_LEN = COMBO_LENGTH;
 // const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 // const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
@@ -156,26 +156,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                                              KC_Y   , KC_U  , KC_I  , KC_O  , KC_P  ,KC_EQL ,
         AZ_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,CY_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP,STL_SPC,CTL_ENT,KC_DOWN,            KC_UP  ,CTR_ENT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,                                                                       
-                                                        LGREEN,LYELLOW,KC_DEL,              KC_ENT,LYELLOW ,LGREEN                                                                      
+        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP,STL_SPC,KC_LCTL,KC_DOWN,            KC_UP  ,KC_RCTL, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,
+                                                        LGREEN,LYELLOW,KC_DEL,              KC_ENT,LYELLOW ,LGREEN
 
-    ), 
+    ),
     [_LPURPLE] = LAYOUT_6x6(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
         _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                              _______,_______,_______,_______,_______,KC_PIPE,
         _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,_______,_______,KC_BSLS,
         _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
-                                                        _______,_______,_______,              _______,_______,_______                                             
+                                                        _______,_______,_______,              _______,_______,_______
     ),
     [_LGREEN] = LAYOUT_6x6(
         RGB_TOG,RGB_HUI,_______,_______,_______,RESET  ,                                                              RESET  ,_______,_______,_______,_______,_______,
         RGB_MOD,RGB_SAI,_______,KC_UP  ,_______,_______,                                                              _______,_______,KC_UP  ,_______,_______,_______,
         RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______, 
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______,
                                                         _______,_______,_______,              _______,_______,_______
-                                                                              
+
     ),
     [_LYELLOW] = LAYOUT_6x6(
         DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                              KC_SCRL,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS ,_______,
@@ -183,7 +183,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_P0  ,KC_P0  ,KC_DOT ,KC_ENT ,_______,
-                                                        _______,_______,_______,              _______,_______,_______                                                                            
+                                                        _______,_______,_______,              _______,_______,_______
     ),
     [_LAZURE] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
@@ -191,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,KC_LALT,KC_LCTL,KC_LSFT,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______, _______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,_______,              _______,_______,_______   
+                                                        _______,_______,_______,              _______,_______,_______
     ),
     [_LCYAN] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
@@ -199,13 +199,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,                                                              _______,KC_RSFT,KC_RCTL,KC_RALT,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,_______,              _______,_______,_______                                                                               
-    )                                          
+                                                        _______,_______,_______,              _______,_______,_______
+    )
 };
 
 
 // bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) 
+//     switch (keycode)
 //     {
 //         case NOVELTY:
 //             if (record->event.pressed) {
@@ -215,7 +215,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                 // when keycode QMKBEST is released
 //             }
 //             break;
-        
+
 //         case BDSPSW:
 //             if (record->event.pressed) {
 //                 // when keycode QMKBEST is pressed
@@ -224,7 +224,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                 // when keycode QMKBEST is released
 //             }
 //             break;
-        
+
 //         case CURBDS:
 //             if (record->event.pressed) {
 //                 // when keycode QMKBEST is pressed
@@ -233,12 +233,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                 // when keycode QMKBEST is released
 //             }
 //             break;
-        
+
 //     }
 //     return true;
 // };
 
-bool led_update_user(led_t led_state) 
+bool led_update_user(led_t led_state)
 {
     rgblight_set_layer_state(1, led_state.caps_lock);
     rgblight_set_layer_state(2, led_state.num_lock);
@@ -262,7 +262,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // #ifdef OLED_ENABLE
 
 // // static void render_logo(void) {
-// //     static const char PROGMEM qmk_logo[] = 
+// //     static const char PROGMEM qmk_logo[] =
 // //     {
 // //         0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C,  0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
 // //         0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC,  0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
@@ -276,7 +276,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // {
 //     static const char PROGMEM zero[] = {0x30, 0x00};
 //     static const char PROGMEM one[] = {0x31, 0x00};
-//     static const char PROGMEM two[] = {0x32, 0x00}; 
+//     static const char PROGMEM two[] = {0x32, 0x00};
 //     static const char PROGMEM three[] = {0x33, 0x00};
 //     static const char PROGMEM four[] = {0x34, 0x00};
 //     static const char PROGMEM five[] = {0x35, 0x00};
@@ -288,14 +288,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     short mod = 1;
 //     short digits = 0, md = 0;
 //     short begin = 3;
-//     if(input > md) do { 
+//     if(input > md) do {
 //         md =( md * 10) + 9;
 //         ++digits;
 //         mod *=  10;
 //     } while(input > md);
-    
-//     for(short i=0; i< digits; i++) 
-//     { 
+
+//     for(short i=0; i< digits; i++)
+//     {
 //         short x = input / mod;
 //         input = input - x * mod;
 //         // if( begin > 0 )
@@ -307,110 +307,110 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //         // else
 //         switch (x)
 //         {
-//             case 0:        
+//             case 0:
 //                 oled_write_P( zero, false);
 //                 break;
-            
+
 //             case 1:
 //                 oled_write_P( one, false);
 //                 break;
-            
+
 //             case 2:
 //                 oled_write_P(two, false) ;
 //                 break;
-            
+
 //             case 3:
 //                 oled_write_P(three, false);
 //                 break;
-            
+
 //             case 4:
 //                 oled_write_P(four, false) ;
 //                 break;
-            
+
 //             case 5:
 //                 oled_write_P(five, false) ;
 //                 break;
-            
+
 //             case 6:
 //                 oled_write_P(six, false) ;
 //                 break;
-            
+
 //             case 7:
 //                 oled_write_P(seven, false);
 //                 break;
-            
+
 //             case 8:
 //                 oled_write_P(eight, false);
 //                 break;
-            
+
 //             case 9:
 //                 oled_write_P(nine, false);
 //                 break;
-                
+
 //         }
 
-//             mod = mod / 10;            
-    
+//             mod = mod / 10;
+
 //     }
 //     return digits;
 // }
 
-// bool oled_task_user(void) 
+// bool oled_task_user(void)
 // {
-            
-//     static const char PROGMEM gwinworld1[] = 
+
+//     static const char PROGMEM gwinworld1[] =
 //     {
 //         0x20,0x94,0x95, 0x96,0x97, 0x98,0x99, 0x9A,0x9B, 0x9C, 0x9D,0x9E, 0x9F,0x20,0x20, 0x00
 //     };
-//     static const char PROGMEM gwinworld2[] = 
+//     static const char PROGMEM gwinworld2[] =
 //     {
 //         0x20,0xA0,0xA1, 0xA2,0xA3, 0xA4,0xA5, 0xA6,0xA7, 0xA8,0xA9, 0xAA, 0xAB,0x20,0x20,
 //          0x00
 //     };
 //     // Host Keyboard Layer Status
-//     static const char PROGMEM scroll_lock1[] = 
+//     static const char PROGMEM scroll_lock1[] =
 //     {
 //        0x80, 0x81, 0x00
-//     }; 
-//     static const char PROGMEM scroll_lock2[] = 
+//     };
+//     static const char PROGMEM scroll_lock2[] =
 //     {
 //        0x86, 0x87,  0x00
-//     };  
-//     static const char PROGMEM num_lock1[] = 
+//     };
+//     static const char PROGMEM num_lock1[] =
 //     {
 //         0x82, 0x83, 0x00
-//     };  
-//     static const char PROGMEM num_lock2[] = 
+//     };
+//     static const char PROGMEM num_lock2[] =
 //     {
 //         0x88, 0x89, 0x00
-//     };  
-//     static const char PROGMEM caps_lock1[] = 
+//     };
+//     static const char PROGMEM caps_lock1[] =
 //     {
 //         0x84, 0x85, 0x00
-//     };  
-//     static const char PROGMEM caps_lock2[] = 
+//     };
+//     static const char PROGMEM caps_lock2[] =
 //     {
 //         0x8A, 0x8B, 0x00
-//     };  
-//     static const char PROGMEM qmk_logo1[] = 
+//     };
+//     static const char PROGMEM qmk_logo1[] =
 //     {
 //         0x8C, 0x8D, 0x8E, 0x20, 0x00
 //     };
 
-//     static const char PROGMEM qmk_logo2[] = 
+//     static const char PROGMEM qmk_logo2[] =
 //     {
 //          0x8F,0x90, 0x91, 0x92, 0x00
 //      };
 //     // Host Keyboard LED Status
 //     led_t led_state = host_keyboard_led_state();
 //     bool bigLogo = false;
-//     //11 chars go here. 
+//     //11 chars go here.
 //     if(get_highest_layer(layer_state) == _LSYSL)
-//     {   
+//     {
 //         bigLogo = true;
 //         oled_write_P(gwinworld1, false);
 //     }
-//     else 
+//     else
 //     {
 
 //         oled_write_P(qmk_logo1, false);
@@ -424,11 +424,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //         oled_write_P(qmk_logo2, false);
 //     }
 
-    
-//     //11 chars go here. 
-//     switch (get_highest_layer(layer_state)) 
+
+//     //11 chars go here.
+//     switch (get_highest_layer(layer_state))
 //     {
-        
+
 //         case _LPURPLE:
 //             oled_write_P(PSTR("  Purple   "), false);
 //             break;
@@ -446,11 +446,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //             break;
 //         case _LSYSL:
 //             // oled_write_P(PSTR("  System   "), false);
-            
+
 //             oled_write_P(gwinworld2, false);
 //             break;
 //         default:
-        
+
 //             oled_write_P(PSTR("           "), false);
 //     }
 
@@ -477,8 +477,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     static const char PROGMEM bar16[] = {0x12, 0x00};
 //     static const char PROGMEM bar17[] = {0x13, 0x00};
 //     static const char PROGMEM bar18[] = {0x14, 0x00};
-    
-    
+
+
 //     short wpm = get_current_wpm();
 //     short ave = 0;
 //     if(wpm > max_wpm){
@@ -486,16 +486,16 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     }
 //     if(wpm < 1)
 //         ++reset;
-    
-    
-    
+
+
+
 //     if(reset > 200){
 //         reset = 0;
 //         max_wpm = 0;
-//     }    
+//     }
 
 //     ave = ave/15;
-//     float wpmb = wpm;    
+//     float wpmb = wpm;
 //     // oled_write_P( num_lock2 , false);
 //     // oled_write_P( caps_lock2, false);
 
@@ -503,8 +503,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     writeInt(max_wpm);
 //     oled_write_ln_P(PSTR(" "), false);
 //     writeInt(wpm);
-    
-//     // oled_write_ln_P( PSTR(" ") , false); 
+
+//     // oled_write_ln_P( PSTR(" ") , false);
 //     if(wpmb > 168){
 //         wpmb -= 168;
 //         for (short i=0; i<14; ++i)
@@ -550,7 +550,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     // oled_write_ln_P(qmk_logo3, false);
 
 
-        
+
 //     return false;
 // };
 
