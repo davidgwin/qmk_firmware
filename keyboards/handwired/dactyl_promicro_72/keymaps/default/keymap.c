@@ -98,14 +98,11 @@ void keyboard_post_init_user(void) {
     rgblight_layers = my_rgb_layers;
 };
 
-// enum custom_keycodes {
-//     NOVELTY = SAFE_RANGE,
-//     BDSPSW,
-//     CURBDS,
-//     EMAIL1,
-//     EMAIL2,
-//     EMAIL3
-// // };
+enum custom_keycodes {
+    C_UPDAT = SAFE_RANGE,
+    C_COMPI,
+    C_FLASH
+};
 
 // enum combos {
 //   DF_COMB,
@@ -159,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  
         AZ_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L  ,KC_SCLN,CY_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
-        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP,STL_SPC,KC_LCTL,KC_DOWN,            KC_UP  ,KC_RCTL, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,
+        CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP, KC_SPC,KC_LSFT,KC_LCTL,            KC_RCTL  ,KC_RSFT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,
                                                         LGREEN,LYELLOW,KC_DEL,              KC_ENT,LYELLOW ,LGREEN
 
     ),
@@ -168,13 +165,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                              _______,_______,_______,_______,_______,KC_PIPE,
         _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,_______,_______,KC_BSLS,
         _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,_______,              _______,_______,_______
     ),
     [_LGREEN] = LAYOUT_6x6(
         RGB_TOG,RGB_HUI,_______,_______,_______,RESET  ,                                                              RESET  ,_______,_______,_______,_______,_______,
-        RGB_MOD,RGB_SAI,_______,KC_UP  ,_______,_______,                                                              _______,_______,KC_UP  ,_______,_______,_______,
-        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
+        RGB_MOD,RGB_SAI,_______,KC_UP  ,_______,_______,                                                              _______, _______,_______,_______,_______,_______,
+        RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              KC_LEFT,KC_DOWN,KC_UP  ,KC_RIGHT,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______,
                                                         _______,_______,_______,              _______,_______,_______
@@ -190,56 +187,73 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_LAZURE] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______  ,_______,_______,_______,
-        _______,_______,KC_LALT,KC_LCTL,KC_LSFT,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                              _______,C_UPDAT,_______,_______,KC_PSCR,KC_PIPE,
+        _______,_______,_______,_______,C_FLASH,_______,                                                              KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,KC_BSLS,
+        _______,_______,_______,C_COMPI,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______, _______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,_______,              _______,_______,_______
     ),
     [_LCYAN] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,KC_RSFT,KC_RCTL,KC_RALT,_______,_______,
-        _______,_______,_______,_______,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,KC_EXEC,_______,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,KC_SLCT,KC_FIND,_______,                                                              _______,_______,_______,_______,_______,_______,
+        _______,KC_UNDO,KC_CUT,KC_COPY,KC_PSTE,_______,                                                              _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,_______,              _______,_______,_______
     )
 };
 
 
-// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode)
-//     {
-//         case NOVELTY:
-//             if (record->event.pressed) {
-//                 // when keycode QMKBEST is pressed
-//                 SEND_STRING("");
-//             } else {
-//                 // when keycode QMKBEST is released
-//             }
-//             break;
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode)
+    {
+        case C_UPDAT:
+            if (record->event.pressed) {
+                // when keycode QMKBEST is pressed
+                SEND_STRING("sudo apt update && sudo apt upgrade");
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
 
-//         case BDSPSW:
-//             if (record->event.pressed) {
-//                 // when keycode QMKBEST is pressed
-//                 SEND_STRING("");
-//             } else {
-//                 // when keycode QMKBEST is released
-//             }
-//             break;
+        case C_COMPI:
+            if (record->event.pressed) {
+                // when keycode QMKBEST is pressed
+                SEND_STRING("qmk compile -kb handwired/dactyl_promicro_72 -km default");
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
 
-//         case CURBDS:
-//             if (record->event.pressed) {
-//                 // when keycode QMKBEST is pressed
-//                 SEND_STRING("");
-//             } else {
-//                 // when keycode QMKBEST is released
-//             }
-//             break;
+         case C_FLASH:
+            if (record->event.pressed) {
+                // when keycode QMKBEST is pressed
+                SEND_STRING(" qmk flash -kb handwired/dactyl_promicro_72 -km default");
+            } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+        // case BDSPSW:
+        //     if (record->event.pressed) {
+        //         // when keycode QMKBEST is pressed
+        //         SEND_STRING("");
+        //     } else {
+        //         // when keycode QMKBEST is released
+        //     }
+        //     break;
 
-//     }
-//     return true;
-// };
+        // case CURBDS:
+        //     if (record->event.pressed) {
+        //         // when keycode QMKBEST is pressed
+        //         SEND_STRING("");
+        //     } else {
+        //         // when keycode QMKBEST is released
+        //     }
+        //     break;
+
+    }
+    return true;
+};
 
 bool led_update_user(led_t led_state)
 {
