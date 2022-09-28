@@ -19,9 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define USE_SERIAL
 
-#define MASTER_RIGHT
+// #define MASTER_RIGHT
 // #define MASTER_RIGHT
 //#define EE_HANDS
 // Rows are doubled-up
-#define TAPPING_TERM 225
+// #define TAPPING_TERM 225
 #define RGBLIGHT_LAYERS
+
+// #define COMBO_TERM 40
+// #define COMBO_MUST_HOLD_MODS

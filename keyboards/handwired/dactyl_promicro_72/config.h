@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT         Walnut Dactyl
+#define PRODUCT Alawon
+
 
 /* key matrix size */
 // Rows are doubled-up
@@ -31,8 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROW_PINS { F6, F7, B1, B3, B2, B6 }
 
 #define DIODE_DIRECTION COL2ROW
-
-
+`
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x3060
@@ -50,7 +50,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCE 5
 
 /* serial.c configuration for split keyboard */
-#define SOFT_SERIAL_PIN D0
+#define USE_SERIAL
+#define SOFT_SERIAL_PIN D2
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
@@ -61,10 +62,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D1
+
+#define RGB_DI_PIN D3
 
 #define RGBLED_NUM 8    // Number of LEDs
 #define RGBLIGHT_SPLIT
+// if this pin is high it is the left low is the right.
+#define SPLIT_HAND_PIN F5
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
