@@ -40,6 +40,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
 
+// dynamic macro size
+// #define DYNAMIC_MACRO_SIZE 256
+
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
 
