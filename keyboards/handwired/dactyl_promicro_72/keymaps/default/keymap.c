@@ -101,7 +101,11 @@ void keyboard_post_init_user(void) {
 enum custom_keycodes {
     C_UPDAT = SAFE_RANGE,
     C_COMPI,
-    C_FLASH
+    C_FLASH,
+    EMAIL1,
+    EMAIL2,
+    EMAIL3,
+    EMAIL4
 };
 
 // enum combos {

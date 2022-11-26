@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT Alawon
+#define PRODUCT Alawon 72
 
 
 /* key matrix size */
@@ -86,3 +86,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
+#define RGBLIGHT_LAYERS
