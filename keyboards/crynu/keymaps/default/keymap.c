@@ -25,10 +25,11 @@
 #define TGCLMK TG(_COLMAK)
 #define TYELLOW TG(_LYELLOW)
 #define LAZURE MO(_LAZURE)
+#define TAZURE TG(_LAZURE)
 #define LCYAN MO(_LCYAN)
-#define LSYSL MO(_LSYSL)
+#define LSYSL MO(_LSYSL) 
 
-#define LG_QUOT LGUI_T(KC_QUOT)
+#define CY_QUOT LT(_LCYAN, KC_QUOT)
 #define RG_CAPS RGUI_T(KC_CAPS)
 #define CTL_ENT LCTL_T(KC_ENT)
 #define CTR_ENT RCTL_T(KC_ENT)
@@ -37,6 +38,7 @@
 #define STL_SPC LSFT_T(KC_SPC)
 #define STL_CAP LSFT_T(KC_CAPS)
 #define STR_SPC RSFT_T(KC_SPC)
+#define LVN_ENT LT(_LYELLOW, KC_ENT)
 #define LVN_ESC LT(_LYELLOW, KC_ESC)
 #define D_AZURE LT(_LAZURE, KC_DEL)
 #define E_AZURE LT(_LAZURE, KC_ENT)
@@ -53,8 +55,8 @@
 #define ALT_RGT RALT_T(KC_RGHT)
 #define A_SHFT RSFT_T(KC_A)
 #define CL_SHFT RSFT_T(KC_SCLN)
-#define KM_DLEFT LGUI(LCTL(KC_LEFT))
-#define KM_DRIGHT LGUI(LCTL(KC_RIGHT))
+#define KM_DLFT LGUI(LCTL(KC_LEFT))
+#define KM_DRGT LGUI(LCTL(KC_RIGHT))
 #define GUI_L LGUI(KC_L)
 #define GUI_E LGUI(KC_E)
 #define GUI_LEFT LGUI(KC_LEFT)
@@ -66,7 +68,17 @@
 
 bool enter = false, squid = false, ball = false, half = false;
 
-enum custom_keycodes { NOVELTY = SAFE_RANGE, BDSPSW, CURBDS, EMAIL1, EMAIL2, EMAIL3, FIRE, SQUID, BALL };
+enum custom_keycodes { 
+    C_UPDAT = SAFE_RANGE,
+    C_COMPI,
+    C_FLASH,
+    EMAIL1,
+    EMAIL2,
+    EMAIL3,
+    EMAIL4,
+    FIRE,
+    SQUID,
+    BALL };
 
 // enum combos { FG_COMB, DF_COMB, SD_COMB, JK_COMB, KL_COMB, E1_COMB, E2_COMB, E3_COMB, XC_COMB, VC_COMB, MCM_COMB, CMDT_COMB, SYSL_COMB, COMBO_LENGTH };
 
@@ -103,92 +115,99 @@ enum custom_keycodes { NOVELTY = SAFE_RANGE, BDSPSW, CURBDS, EMAIL1, EMAIL2, EMA
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-	[_QWERTY]  = LAYOUT(/* qwerty */
-       	KC_GRV, KC_1,  KC_2,   KC_3,   KC_4,   KC_5,						               KC_6,    KC_7,  KC_8,   KC_9,   KC_0,   KC_MINS, 
-        KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,						               KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL,
-		STL_CAP,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,						               KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,KC_QUOT,
-		KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B, 						               KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT, 
-		CTL_ENT,KC_LGUI,KC_LALT,LVN_ESC,LGREEN, PRPL_BSP, STL_SPC, D_CYAN, LAZURE, KC_SPC, PRPL_BSP,LGREEN,KC_LBRC,KC_RBRC,KC_BSLS,CTR_ENT
-		),
-	
-        [_COLMAK]  = LAYOUT(
-		_______,_______,_______,_______,_______,_______,				                    _______,_______,_______,_______,_______,_______,
-		_______,_______,_______,KC_F   ,KC_P   ,KC_G   ,			                    	KC_J   ,KC_L   ,KC_U  ,KC_Y   ,KC_SCLN ,_______,
-        _______,_______,KC_R   ,KC_S   ,KC_T   ,KC_D   ,                                    KC_H   ,KC_N   ,KC_E   , KC_I, KC_O    ,_______,
-        _______,_______,_______,_______,_______,_______,                                    KC_K   ,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,_______,_______
-		),
+    [_QWERTY]  = LAYOUT(/* qwerty */
+        KC_GRV, KC_1,  KC_2,   KC_3,   KC_4,   KC_5,                                                         KC_6,    KC_7,  KC_8,   KC_9,   KC_0,   KC_MINS, 
+        KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                        KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL ,
+        AZ_CAPS,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                        KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,CY_QUOT,
+        KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                                                        KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT, 
+        CTL_ENT,KC_LGUI,KC_LALT,LVN_ESC,LGREEN, PRPL_DEL, LVN_ENT, LCYAN,                    LAZURE, KC_SPC, PRPL_BSP,LGREEN,KC_LBRC,KC_RBRC,KC_BSLS,CTR_ENT
+    ),
+    
+    [_COLMAK]  = LAYOUT(
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,KC_F   ,KC_P   ,KC_G   ,                                                    KC_J   ,KC_L   ,KC_U  ,KC_Y   ,KC_SCLN ,_______,
+        _______,_______,KC_R   ,KC_S   ,KC_T   ,KC_D   ,                                                    KC_H   ,KC_N   ,KC_E   , KC_I, KC_O    ,_______,
+        _______,_______,_______,_______,_______,_______,                                                    KC_K   ,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______
+    ),
 
-        [_LPURPLE] = LAYOUT(
-		KC_F12 ,KC_F1  ,KC_F2  ,KC_F3   ,KC_F4  ,KC_F5  , 			     		            KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 , 
-		_______,_______,_______,KC_LCBR ,KC_RCBR,_______,            				        _______,_______,_______,_______,_______,KC_PIPE,
-	    _______,_______,_______,KC_LBRC ,KC_RBRC,_______,			            	        KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______,
-		_______,_______,_______,KC_LPRN ,KC_RPRN,_______,				                    _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______, 
-		_______,_______, _______,_______,_______,_______,_______,_______,   _______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______
-		),
-	
-	[_LGREEN]  = LAYOUT(
-		GE_NORM,_______, BDSPSW, CURBDS,_______,_______, 			                        _______,_______,_______,_______,_______,_______, 
-		_______,RGB_TOG,RGB_VAI,RGB_SAI,RGB_HUI,RGB_MOD, 			    	                _______,_______,KC_UP  ,_______,KC_MPLY,_______, 
-		_______,_______,_______,_______,_______,_______, 				                    _______,KC_LEFT,KC_DOWN,KC_RGHT,KC_MSTP,_______,
-		_______,_______,_______,_______,_______,_______,			                      	_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,CMB_TOG, 
-		_______,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,_______,_______
-		),
-	
-	[_LYELLOW] = LAYOUT(
-		_______,_______,_______,_______,_______,_______, 				                    KC_SCRL,KC_NUM ,KC_PSLS,KC_PAST,KC_PMNS,_______, 
-		_______,_______,_______,_______,_______,_______, 		                            _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
-		_______,_______,KC_LEFT,KC_UP  ,KC_RGHT,_______, 				                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
-		_______,_______,_______,KC_DOWN,_______,_______,				                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______, 
-        _______,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,KC_P0  ,KC_PDOT,KC_PENT,_______
-		),
+    [_LPURPLE] = LAYOUT(
+        KC_F12 ,KC_F1  ,KC_F2  ,KC_F3   ,KC_F4  ,KC_F5  ,                                                   KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 , 
+        _______,_______,_______,KC_LCBR ,KC_RCBR,_______,                                                   _______,_______,_______,_______,_______,KC_PIPE,
+        _______,_______,_______,KC_LBRC ,KC_RBRC,_______,                                                   KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______,
+        _______,_______,_______,KC_LPRN ,KC_RPRN,_______,                                                   _______,KM_DLFT,_______,KM_DRGT,_______,_______, 
+        _______,_______, _______,_______,_______,_______,_______,_______,                   _______,_______,_______,KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______
+    ),
+    
+    [_LGREEN]  = LAYOUT(
+        KC_F24 ,KC_F13 ,KC_F14 ,KC_F15 ,KC_F16 ,KC_F17 ,                                                    KC_F18 ,KC_F19 ,KC_F20 ,KC_F21 ,KC_F22 ,KC_F23 , 
+        _______,RGB_TOG,RGB_VAI,RGB_SAI,RGB_HUI,RGB_MOD,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,_______,_______,_______,                                                    KC_LEFT,KC_DOWN,KC_UP ,KC_RIGHT,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,KC_MSTP,KC_MPLY,_______,_______, 
+        _______,_______,_______,_______,TAZURE ,_______,_______,_______,                    _______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______
+    ),
+    
+    [_LYELLOW] = LAYOUT(
+        DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                    KC_SCRL,KC_NUM ,KC_PSLS,KC_PAST,KC_PMNS,_______, 
+        _______,DM_REC1,DM_REC2,KC_UP  ,_______,_______,                                                    _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
+        _______,_______,KC_LEFT,KC_UP  ,KC_RGHT,_______,                                                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
+        _______,_______,_______,KC_DOWN,_______,_______,                                                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______, 
+        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,KC_P0  ,KC_PDOT,KC_PENT,_______
+    ),
 
-	[_LAZURE]  = LAYOUT(
-		_______,_______,_______,_______,_______,_______,			 	                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______, 				                    _______,_______,_______,_______,_______,_______,
-		_______,_______,_______,_______,_______,_______, 				                    _______,KC_RSFT,KC_RCTL,KC_RALT,_______,_______, 
-		_______,_______,_______,_______,_______,_______,				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,_______,LSYSL  
-		),
+    [_LAZURE]  = LAYOUT(
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,KC_W   ,KC_E   ,_______,                                                    _______,_______,_______,_______,KC_PSCR,_______,
+        _______,_______,KC_A   ,KC_W   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______, 
+        _______,_______,_______,KC_S   ,_______,_______,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,  LSYSL  
+    ),
 
-	[_LCYAN]   = LAYOUT (
-		_______,_______,_______,_______,_______,_______, 				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,_______,_______,_______,				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,KC_LALT,KC_LCTL,KC_LSFT,_______, 				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,_______,_______,_______,		                            _______,_______,_______,_______,_______,_______,
-		LSYSL  ,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,_______,_______
-		),
+    [_LCYAN]   = LAYOUT (
+        _______,EMAIL1 ,EMAIL2 ,EMAIL3 ,EMAIL4 ,_______,                                                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,C_UPDAT,_______,_______,_______,_______, 
+        _______,_______,_______,_______,C_FLASH,_______,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,C_COMPI,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
+        LSYSL  ,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______
+    ),
 
-	[_LSYSL]   = LAYOUT(
-		_______,_______,_______,_______,_______,_______,				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,_______,RESET  ,_______,				                    _______,_______,_______,_______,_______,_______,
-		_______,_______,_______,_______,_______,_______, 		                            _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,TGCLMK ,_______,_______, 				                    _______,_______,_______,_______,_______,_______, 
-		_______,_______,_______,_______,_______,_______,_______,_______,    _______,_______,_______,_______,_______,_______,_______,_______
-		)
+    [_LSYSL]   = LAYOUT(
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,_______,RESET  ,_______,                                                    _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,TGCLMK ,_______,_______,                                                    _______,_______,_______,_______,_______,_______, 
+        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______
+    )
 };
 
 // static short count3 = 0;
 // static bool animation = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		// case NOVELTY:
-        //     if (record->event.pressed)
-        //     {
-        //         animation = !animation;
-        //     } else {
-        //     }
-        //     break;
-
-        case BDSPSW:
+    switch (keycode) {
+                case C_UPDAT:
             if (record->event.pressed) {
-                SEND_STRING("");
+                // when keycode QMKBEST is pressed
+                SEND_STRING("sudo apt update && sudo apt upgrade");
+            } else {
+                // when keycode QMKBEST is released
             }
             break;
-        case CURBDS:
+
+        case C_COMPI:
             if (record->event.pressed) {
-                SEND_STRING("");
+                // when keycode QMKBEST is pressed
+                SEND_STRING("qmk compile -kb crynu -km default");
             } else {
+                // when keycode QMKBEST is released
+            }
+            break;
+
+         case C_FLASH:
+            if (record->event.pressed) {
+                // when keycode QMKBEST is pressed
+                SEND_STRING(" qmk flash -kb crynu -km default");
+            } else {
+                // when keycode QMKBEST is released
             }
             break;
 
@@ -200,13 +219,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case EMAIL2:
             if (record->event.pressed) {
-                SEND_STRING("david.gwin@bestdealspring.com");
+                SEND_STRING("david.gwin@fleetpride.com");
             } else {
             }
             break;
         case EMAIL3:
             if (record->event.pressed) {
                 SEND_STRING("davidgwin123@gmail.com");
+            } else {
+            }
+            break;
+        case EMAIL4:
+            if (record->event.pressed) {
+                SEND_STRING("davidgwin@outlook.com");
             } else {
             }
             break;
@@ -682,7 +707,7 @@ bool oled_task_user(void) {
     //                     rawbuf[35] = 22;
     //                 }
     //             }
-    //         }
+    //         }    
 
     //         oled_write_raw_P(rawbuf, sizeof(rawbuf));
     //         ++pass;
