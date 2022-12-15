@@ -161,14 +161,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT,KC_SLSH,KC_RSFT,
         CTL_ENT,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_BSP, KC_SPC,KC_LSFT,KC_LCTL,            KC_RCTL  ,KC_RSFT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC ,KC_BSLS,CTR_ENT,
                                                         LGREEN,LYELLOW,KC_DEL,              KC_ENT,LYELLOW ,LGREEN
-
     ),
     [_LPURPLE] = LAYOUT_6x6(
         KC_F12 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                                              KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
         _______,_______,_______,KC_LCBR,KC_RCBR,_______,                                                              _______,_______,_______,_______,_______,KC_PIPE,
-        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,_______,_______,KC_BSLS,
+        _______,_______,_______,KC_LBRC,KC_RBRC,_______,                                                              _______,_______,_______,KC_TAB ,_______,KC_BSLS,
         _______,_______,_______,KC_LPRN,KC_RPRN,_______,                                                              _______,KM_DLEFT,_______,KM_DRIGHT,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,KC_MENU,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,_______,_______,_______,KC_APP ,_______,
                                                         _______,_______,_______,              _______,_______,_______
     ),
     [_LGREEN] = LAYOUT_6x6(
@@ -178,7 +177,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,RGB_HUI,_______,_______,_______,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,RESET  ,              RESET  ,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______,
                                                         _______,_______,_______,              _______,_______,_______
-
     ),
     [_LYELLOW] = LAYOUT_6x6(
         DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                              KC_SCRL,KC_NUM,KC_PSLS,KC_PAST,KC_PMNS ,_______,
