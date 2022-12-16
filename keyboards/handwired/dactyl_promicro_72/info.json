@@ -1,7 +1,12 @@
 {
-    "keyboard_name": "Alawon 72",    
-    "url": "",
-    "maintainer": "gwin.world",
+    "keyboard_name": "dactyl_promicro_72",
+    "manufacturer": "Gwin.World",
+    "url": "gwin.world",
+    "usb": {
+        "vid": "0xFEED",
+        "pid": "0x6060",
+        "device_version": "2.0.0"
+    },
     "layouts": {
         "LAYOUT_6x6": {
             "layout": [

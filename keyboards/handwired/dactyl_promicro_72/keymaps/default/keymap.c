@@ -172,11 +172,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,_______,_______,              _______,_______,_______
     ),
     [_LGREEN] = LAYOUT_6x6(
-        KC_F24 ,KC_F13 ,KC_F14 ,KC_F15 ,KC_F16 ,KC_F17 ,                                                              KC_F18 ,KC_F19 ,KC_F20 ,KC_F21 ,KC_F22 ,KC_F23 , 
+        KC_F24 ,KC_F13 ,KC_F14 ,KC_F15 ,KC_F16 ,KC_F17 ,                                                              KC_F18 ,KC_F19 ,KC_F20 ,KC_F21 ,KC_F22 ,KC_F23 ,
         RGB_MOD,RGB_SAI,_______,KC_UP  ,_______,_______,                                                              _______, _______,_______,_______,_______,_______,
         RGB_VAI,RGB_VAD,KC_LEFT,KC_DOWN,KC_RGHT,_______,                                                              KC_LEFT,KC_DOWN,KC_UP  ,KC_RIGHT,_______,_______,
         RGB_TOG,RGB_HUI,_______,_______,_______,_______,                                                              _______,_______,KC_MSTP,KC_MPLY,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,RESET  ,              RESET  ,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______,
+        _______,_______,_______,_______,_______,_______,_______,_______,_______,              _______,_______,_______,_______,KC_MPRV,KC_VOLD,KC_VOLU,KC_MNXT,_______,
                                                         _______,_______,_______,              _______,_______,_______
 
     ),
@@ -268,7 +268,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool led_update_user(led_t led_state)
 {
     rgblight_set_layer_state(1, led_state.caps_lock);
-    rgblight_set_layer_state(2, led_state.num_lock); 
+    rgblight_set_layer_state(2, led_state.num_lock);
     return true;
 }
 
