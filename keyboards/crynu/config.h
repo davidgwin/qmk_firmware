@@ -32,16 +32,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 8
 
-#define MATRIX_COL_PINS { B5,  B4,  B3,  B10,  B1, B0, B6, B7}
-#define MATRIX_ROW_PINS {C13, C14, C15, B15, B14, A4, A5, A6}
+#define MATRIX_COL_PINS { B5,  B4,  A15,  B13,  B1, B0, B6, B7}
+#define MATRIX_ROW_PINS {C13, C14, C15, B15, B14, A0, A1, A2}
 #define RGB_DI_PIN B12
 #define RGBLIGHT_ANIMATIONS
 #define RGBLED_NUM 16
 /* COL2ROW or ROW2COL */
 #define DIODE_DIRECTION COL2ROW
-
-// dynamic macro size
-// #define DYNAMIC_MACRO_SIZE 256
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
@@ -72,14 +69,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
-#ifdef OLED_ENABLE
-#define OLED_DISPLAY_128X32
-#define I2C1_SCL_PIN        B9
-#define I2C1_SDA_PIN        B8
-#define OLED_BRIGHTNESS 128
-#define OLED_FONT_H "keyboards/crynu/crynu_font.c"
-#define OLED_FADE_OUT
-#define OLED_FADE_OUT_INTERVAL 15
-#define OLED_UPDATE_INTERVAL 100
-#define OLED_TIMEOUT 60000
-#endif
+// #ifdef OLED_ENABLEx
+// #define OLED_DISPLAY_128X32
+// #define I2C1_SCL_PIN        B9
+// #define I2C1_SDA_PIN        B8
+// #define OLED_BRIGHTNESS 128
+// #define OLED_FONT_H "keyboards/crynu/crynu_font.c"
+// #define OLED_FADE_OUT
+// #define OLED_FADE_OUT_INTERVAL 15
+// #define OLED_UPDATE_INTERVAL 100
+// #define OLED_TIMEOUT 60000
+// #define OLED_DISPLAY_ADDRESS 0x3C
+// #endif
+
+
+
+// #define I2C2_SCL_PIN        B10
+// #define I2C2_SDA_PIN        B3
+// #define I2C2_SCL_PIN        B9
+// #define I2C2_SDA_PIN        B8
+#define CIRQUE_PINNACLE_ADDR 0x2A
+#define CIRQUE_PINNACLE_SPI_CS_PIN A4
+// #define CIRQUE_PINNACLE_SPI_LSBFIRST true
+
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN B13
+#define SPI_SCK_PAL_MODE 5
+#define SPI_MOSI_PIN B15
+#define SPI_MOSI_PAL_MODE 5
+#define SPI_MISO_PIN B14
+#define SPI_MISO_PAL_MODE 5
+
+#define CIRQUE_PINNACLE_ATTENUATION ADC_ATTENUATE_1X
+#define CIRQUE_PINNACLE_CURVED_OVERLAY
+#define CIRQUE_PINNACLE_TAP_ENABLE
+#define CIRQUE_PINNACLE_DIAMETER_MM 40
+#define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
+
