@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 #include "config_common.h"
-#define PRODUCT Alawon 72
+
 
 
 /* key matrix size */
@@ -34,17 +34,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 /* USB Device descriptor parameter */
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x3060
-#define DEVICE_VER      0x0001
+
 //#define MANUFACTURER    tshort
 
-/* mouse config */
+/* mouse config *//*
 #define MOUSEKEY_INTERVAL       20
 #define MOUSEKEY_DELAY          0
 #define MOUSEKEY_TIME_TO_MAX    60
 #define MOUSEKEY_MAX_SPEED      7
-#define MOUSEKEY_WHEEL_DELAY 0
+#define MOUSEKEY_WHEEL_DELAY 0*/
 
 /* Set 0 if debouncing isn't needed */
 #define DEBOUNCE 5
@@ -87,3 +85,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
 #define RGBLIGHT_LAYERS
+
+
+#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_2X
+#define CIRQUE_PINNACLE_CURVED_OVERLAY
+#define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
+#define CIRQUE_PINNACLE_TAP_ENABLE
+#define CIRQUE_PINNACLE_DIAMETER_MM 40
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
+// #define MASTER_RIGHT
+

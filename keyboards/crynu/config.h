@@ -19,13 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 
-/* USB Device descriptor parameter */
 
-#define VENDOR_ID       0xFEED
-#define PRODUCT_ID      0x3060
-#define DEVICE_VER      0x0001
-#define MANUFACTURER    Gwin World
-#define PRODUCT         CRYNU
 
 /* key matrix size */
 // Rows are doubled-up
@@ -93,14 +87,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define CIRQUE_PINNACLE_SPI_LSBFIRST true
 
 #define SPI_DRIVER SPID1
-#define SPI_SCK_PIN B13
-#define SPI_SCK_PAL_MODE 5
-#define SPI_MOSI_PIN B15
-#define SPI_MOSI_PAL_MODE 5
-#define SPI_MISO_PIN B14
-#define SPI_MISO_PAL_MODE 5
+#define SPI_SCK_PIN A5
+// #define SPI_SCK_PAL_MODE 5
+#define SPI_MOSI_PIN A7
+// #define SPI_MOSI_PAL_MODE 5
+#define SPI_MISO_PIN A6
+// #define SPI_MISO_PAL_MODE 5
 
-#define CIRQUE_PINNACLE_ATTENUATION ADC_ATTENUATE_1X
+#define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_1X
 #define CIRQUE_PINNACLE_CURVED_OVERLAY
 #define CIRQUE_PINNACLE_TAP_ENABLE
 #define CIRQUE_PINNACLE_DIAMETER_MM 40
