@@ -34,7 +34,10 @@
     },
     "python.formatting.provider": "yapf",
     "[json]": {
-	    "editor.formatOnSave": false
+        "editor.formatOnSave": false
     },
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "clangd.arguments": [
+        "--header-insertion=never"
+    ]
 }
