@@ -16,9 +16,9 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality
 AUDIO_ENABLE = no           # Audio output
 RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
-# RGB_MATRIX_ENABLE = yes
-# RGB_MATRIX_DRIVER = WS2812
+RGBLIGHT_DRIVER =  WS2812
 SPLIT_KEYBOARD = yes
+CAPS_WORD_ENABLE = yes
 
 DYNAMIC_MACRO_ENABLE = yes
 # UNICODE_ENABLE = yes
@@ -26,7 +26,7 @@ DYNAMIC_MACRO_ENABLE = yes
 
 # LTO_ENABLE = yes
 
-COMBO_ENABLE = NO
+COMBO_ENABLE = no
 
 
 # WPM_ENABLE = yes

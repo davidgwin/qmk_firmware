@@ -1,0 +1,46 @@
+keyboards/alpine65/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/ano/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/atreus64stm32f401/atreus64stm32f401.c:#include "atreus64stm32f401.h"
+keyboards/atreus64stm32f401/config.h:#define OLED_FONT_H "keyboards/atreus64stm32f401/atreus64stm_font.c"
+keyboards/atreus64stm32f401/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/bacca70/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/boston/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/box75/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/cantor/info.json:    "bootloader": "stm32-dfu",
+keyboards/carbo65/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/ck60i/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/crin/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/crynu/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/emery65/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/ergodox_stm32/chconf.h: *    `qmk chibios-confmigrate -i keyboards/ergodox_stm32/chconf.h -r platforms/chibios/common/configs/chconf.h`
+keyboards/ergodox_stm32/ergodox_stm32.c:    // This board doesn't use the "standard" stm32duino bootloader, and is resident in memory at the base location. All we can do here is reset.
+keyboards/ergodox_stm32/halconf.h: *    `qmk chibios-confmigrate -i keyboards/ergodox_stm32/halconf.h -r platforms/chibios/common/configs/halconf.h`
+keyboards/ergodox_stm32/readme.md:# ergodox_stm32
+keyboards/ergodox_stm32/readme.md:    make ergodox_stm32:default
+keyboards/ergodox_stm32/rules.mk:MCU_LDSCRIPT = stm32f103_bootloader
+keyboards/evolv/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/ferris/readme.md:	* Ferris 0.2 (With stm32f072 chip. Comes in 4 variants: bling, mini, high and compact)
+keyboards/forever65/info.json:    "bootloader": "stm32-dfu",
+keyboards/hand88/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/hp69/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/hub20/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/iron180/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/jm60/jm60.c:    // This board doesn't use the "standard" stm32duino bootloader. There's no information on how to jump to the custom bootloader, so all we can do here is reset.
+keyboards/loki65/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/mnk1800s/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/mnk50/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/mnk75/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/monarch/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/moonlander/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/ms_sculpt/info.json:    "bootloader": "stm32-dfu",
+keyboards/mxss/mxss.c: * EEPROM management code from ../cannonkeys/stm32f072/keyboard.c
+keyboards/nack/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/nasu/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/nemui/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/phoenix/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/retro_75/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/rocketboard_16/rules.mk:# BOOTLOADER = stm32duino
+keyboards/rocketboard_16/rules.mk:MCU_LDSCRIPT = STM32F103xB_stm32duino_bootloader
+keyboards/rocketboard_16/rules.mk:BOOTLOADER_TYPE = stm32duino
+keyboards/technika/rules.mk:BOOTLOADER = stm32-dfu
+keyboards/w1_at/rules.mk:BOOTLOADER = stm32-dfu
