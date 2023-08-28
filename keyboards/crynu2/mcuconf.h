@@ -1,5 +1,5 @@
-#ifndef MCUCONF_CRYNU_H
-#define MCUCONF_CRYNU_H
+#ifndef MCUCONF_CRYNU2_H
+#define MCUCONF_CRYNU2_H
 
 #include_next <mcuconf.h>
 

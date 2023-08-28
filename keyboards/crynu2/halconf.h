@@ -1,5 +1,5 @@
-#ifndef CRYNU_HALCONF
-#define CRYNU_HALCONF
+#ifndef CRYNU2_HALCONF
+#define CRYNU2_HALCONF
 // #define HAL_USE_PWM TRUE
 
 // #define HAL_USE_SERIAL TRUE

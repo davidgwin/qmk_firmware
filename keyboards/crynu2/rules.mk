@@ -1,4 +1,4 @@
-SRC += crynu.c
+SRC += crynu2.c
 
 POINTING_DEVICE_ENABLE = yes
 POINTING_DEVICE_DRIVER = cirque_pinnacle_spi

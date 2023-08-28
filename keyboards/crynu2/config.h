@@ -1,6 +1,5 @@
-#ifndef CRYNU_CONFIG
-#define CRYNU_CONFIG
-
+#ifndef CRYNU2_CONFIG
+#define CRYNU2_CONFIG
 
 #define I2C_DRIVER I2CD0
 
@@ -21,14 +20,5 @@
 #define CIRQUE_PINNACLE_TAP_ENABLE
 #define CIRQUE_PINNACLE_DIAMETER_MM 40
 #define POINTING_DEVICE_GESTURES_SCROLL_ENABLE
-
-// #define WS2812_PIO_USE_PIO1
-// #define WS2812_DI_PIN GP10
-// #define RGB_MATRIX_LED_COUNT 16
-
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-// #define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-// #define LOCKING_RESYNC_ENABLE
 
 #endif
