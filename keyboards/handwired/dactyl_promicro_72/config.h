@@ -61,12 +61,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* ws2812 RGB LED */
 
+#define RGBLIGHT_LAYERS
 #define RGB_DI_PIN D3
-
-#define RGBLED_NUM 8    // Number of LEDs
+#define RGBLED_NUM 16    // Number of LEDs
+#define RGBLED_SPLIT {8,8}
 #define RGBLIGHT_SPLIT
+// #define SPLIT_LAYER_STATE_ENABLE
 // if this pin is high it is the left low is the right.
 #define SPLIT_HAND_PIN F5
+#define RGBLIGHT_SLEEP
+#define SPLIT_TRANSPORT_MIRROR
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
@@ -84,7 +88,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
-#define RGBLIGHT_LAYERS
 
 
 #define CIRQUE_PINNACLE_ATTENUATION EXTREG__TRACK_ADCCONFIG__ADC_ATTENUATE_2X
