@@ -1,10 +1,21 @@
-#pragma once
+#ifndef CRYNU_H 
+#define CRYNU_H
+/**
+ * ╭───┬───┬───┬───┬───┬───╮                      ╭───┬───┬───┬───┬───┬───╮
+ * │k00│k01│k02│k03│k04│k05│                      │k0a│k0b│k0c│k0d│k0e│k0f│
+ * ├───┼───┼───┼───┼───┼───┤                      ├───┼───┼───┼───┼───┼───┤
+ * │k10│k11│k12│k13│k14│k15│                      │k1a│k1b│k1c│k1d│k1e│k1f│
+ * ├───┼───┼───┼───┼───┼───┤                      ├───┼───┼───┼───┼───┼───┤
+ * │k20│k21│k22│k23│k24│k25│                      │k2a│k2b│k2c│k2d│k2e│k2f│
+ * ├───┼───┼───┼───┼───┼───┤                      ├───┼───┼───┼───┼───┼───┤
+ * │k30│k31│k32│k33│k34│k35│                      │k3a│k3b│k3c│k3d│k3e│k3f│
+ * ├───┼───┼───┼───┼───┼───┼───┬───╮      ╭───┬───┼───┼───┼───┼───┼───┼───┤
+ * │k40│k31│k42│k43│k44│k45│k4c│k4d│      │k4e│k4f│k4a│k4b│k4c│k4d│k4e│k4f│
+ * ╰───┴───┴───┴───┴───┴───┴───┴───╯      ╰───┴───┴───┴───┴───┴───┴───┴───╯ 
 
-#include "quantum.h"
+ * 
+ *****************************************************************************/
 
-// This a shortcut to help you visually see your layout.
-// The first section contains all of the arguements
-// The second converts the arguments into a two-dimensional array
 #define LAYOUT( \
     k00, k01, k02, k03, k04, k05,                     k06, k07, k08, k09, k0a, k0b, \
     k10, k11, k12, k13, k14, k15,                     k16, k17, k18, k19, k1a, k1b, \
@@ -22,3 +33,5 @@
     { k09, k19, k29, k39, k49, k3b, k4b, k4c}, \
     { k0a, k1a, k2a, k3a, k4a, k4d, k4e, k4f} \
 }
+
+#endif
