@@ -27,7 +27,16 @@
                                   k56, k57, k58, k59 \
 ) \
 { \
-    { k00,  k01,  k02,  k03,  k04,  k05,  k46 }, { k10,  k11,  k12,  k13,  k14,  k15,  k47}, { k20,  k21,  k22,  k23,  k24,  k25,  k57}, { k30,  k31,  k32,  k33,  k34,  k35,  k56}, { k40,  k41,  k42,  k43,  k44,  k45,KC_NO}, { k49, k0a, k0b, k0c, k0d, k0e, k0f},{ k48, k1a, k1b, k1c, k1d, k1e, k1f }, { k58, k2a, k2b, k2c, k2d, k2e, k2f }, { k59, k3a, k3b, k3c, k3d, k3e, k3f }, {KC_NO,k4a, k4b, k4c, k4d, k4e, k4f },\
+    { k00,  k01,  k02,  k03,  k04,  k05,  k46 }, \
+    { k10,  k11,  k12,  k13,  k14,  k15,  k47 }, \
+    { k20,  k21,  k22,  k23,  k24,  k25,  k57 }, \
+    { k30,  k31,  k32,  k33,  k34,  k35,  k56 }, \
+    { k40,  k41,  k42,  k43,  k44,  k45,KC_NO }, \
+    { k49,  k0a,  k0b,  k0c,  k0d,  k0e,  k0f }, \
+    { k48,  k1a,  k1b,  k1c,  k1d,  k1e,  k1f }, \
+    { k58,  k2a,  k2b,  k2c,  k2d,  k2e,  k2f }, \
+    { k59,  k3a,  k3b,  k3c,  k3d,  k3e,  k3f }, \
+    { KC_NO,k4a,  k4b,  k4c,  k4d,  k4e,  k4f },\
 }
 
 
