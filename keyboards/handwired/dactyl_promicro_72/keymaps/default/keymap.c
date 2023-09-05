@@ -30,10 +30,12 @@
 #define STL_SPC LSFT_T(KC_SPC)
 // #define STR_SPC RSFT_T(KC_SPC)
 // #define LVN_ESC LT(_LYELLOW, KC_ESC)
+#define LP_ENT LT(_LPURPLE, KC_ENT)
 // #define D_AZURE LT(_LAZURE, KC_DEL)
 // #define B_AZURE LT(_LAZURE, KC_BSPC)
 #define CY_QUOT LT(_LCYAN, KC_QUOT)
 // #define FLPURPLE LT(_LPURPLE, KC_F)
+#define LP_SPC LT(_LPURPLE, KC_SPC)
 #define PRPL_BSP LT(_LPURPLE, KC_BSPC)
 #define PRPL_DEL LT(_LPURPLE, KC_DEL)
 #define YEL_DEL LT(_LYELLOW, KC_DEL)
@@ -164,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB , KC_Q  , KC_W  , KC_E , KC_R  , KC_T  ,                                                              KC_Y   , KC_U  , KC_I  , KC_O   , KC_P  ,KC_EQL ,
         AZ_CAPS, KC_A  , KC_S   ,KC_D , KC_F  , KC_G  ,                                                              KC_H   , KC_J  , KC_K  , KC_L   ,KC_SCLN,CY_QUOT,
         KC_LSFT, KC_Z  , KC_X  , KC_C , KC_V  , KC_B  ,                                                              KC_N   , KC_M  ,KC_COMM, KC_DOT ,KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,CTSHESC,LAZURE,PRPL_DEL, KC_ENT,KC_LSFT,KC_SCRL,       RCTL(KC_RSFT),KC_RSFT, KC_SPC,PRPL_BSP,LCYAN ,KC_LBRC, KC_RBRC,KC_BSLS,KC_RCTL,
+        KC_LCTL,KC_LGUI,KC_LALT,A(KC_LCTL),LCYAN,KC_DEL,LP_ENT ,CTSHESC,KC_SCRL,       RCTL(KC_RSFT),KC_RSFT,LP_SPC,KC_BSPC ,LAZURE,KC_LBRC, KC_RBRC,KC_BSLS,KC_RCTL,
                                                           LGREEN,LYELLOW,CAS_IN,            KC_ENT  ,LYELLOW, LGREEN
     ),
     [_LPURPLE] = LAYOUT_6x6(
@@ -215,8 +217,6 @@ static const char PROGMEM email1_str[] = {'d','a','v','i','d','@','g','w','i','n
 static const char PROGMEM email2_str[] = {'d','a','v','i','d','.','g','w','i','n','@','f','l','e','e','t','p','r','i','d','e','.','c','o','m',0};
 static const char PROGMEM email3_str[] = {'d','a','v','i','d','g','w','i','n','1','2','3','@','g','m','a','i','l','.','c','o','m',0};
 static const char PROGMEM email4_str[] = {'d','a','v','i','d','g','w','i','n','@','o','u','t','l','o','o','k','.','c','o','m',0};
-static const char PROGMEM blueSheep_str[] = {'b','l','u','e',' ','s','h','e','e','p',0};
-static const char PROGMEM shoesnsocks_str[] = {'s','h','o','e','s',' ','a','n','d',' ','s','o','c','k','s',0};
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -265,21 +265,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_string_P(email4_str);
             } else {
             }
-            break;
-        case KEY1:
-            if(record->event.pressed) {
-                send_string_P(blueSheep_str);
-            }else{
-
-            }
-            break;
-        case KEY2:
-            if(record->event.pressed) {
-                send_string_P(shoesnsocks_str);
-            }else{
-
-            }
-            break;       
+            break;    
         case KVMSW:
             if (record->event.pressed) {
                 register_code(KC_SCRL);
@@ -391,299 +377,3 @@ bool led_update_kb(led_t led_state)
    bool res =  led_update_user(led_state);
    return res;
 }
-// #ifdef OLED_ENABLE
-
-// // static void render_logo(void) {
-// //     static const char PROGMEM qmk_logo[] =
-// //     {
-// //         0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C,  0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
-// //         0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC,  0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
-// //         0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC,  0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
-// //     };
-
-// //     oled_write_P(qmk_logo, false);
-// // };
-// static short max_wpm = 0, reset = 0;
-// short writeInt(short input)
-// {
-//     static const char PROGMEM zero[] = {0x30, 0x00};
-//     static const char PROGMEM one[] = {0x31, 0x00};
-//     static const char PROGMEM two[] = {0x32, 0x00};
-//     static const char PROGMEM three[] = {0x33, 0x00};
-//     static const char PROGMEM four[] = {0x34, 0x00};
-//     static const char PROGMEM five[] = {0x35, 0x00};
-//     static const char PROGMEM six[] = {0x36, 0x00};
-//     static const char PROGMEM seven[] = {0x37, 0x00};
-//     static const char PROGMEM eight[] = {0x38, 0x00};
-//     static const char PROGMEM nine[] = {0x39, 0x00};
-
-//     short mod = 1;
-//     short digits = 0, md = 0;
-//     short begin = 3;
-//     if(input > md) do {
-//         md =( md * 10) + 9;
-//         ++digits;
-//         mod *=  10;
-//     } while(input > md);
-
-//     for(short i=0; i< digits; i++)
-//     {
-//         short x = input / mod;
-//         input = input - x * mod;
-//         // if( begin > 0 )
-//         // {
-
-//         //     oled_write_P(PSTR(" "), false);
-//         //     --begin;
-//         // }
-//         // else
-//         switch (x)
-//         {
-//             case 0:
-//                 oled_write_P( zero, false);
-//                 break;
-
-//             case 1:
-//                 oled_write_P( one, false);
-//                 break;
-
-//             case 2:
-//                 oled_write_P(two, false) ;
-//                 break;
-
-//             case 3:
-//                 oled_write_P(three, false);
-//                 break;
-
-//             case 4:
-//                 oled_write_P(four, false) ;
-//                 break;
-
-//             case 5:
-//                 oled_write_P(five, false) ;
-//                 break;
-
-//             case 6:
-//                 oled_write_P(six, false) ;
-//                 break;
-
-//             case 7:
-//                 oled_write_P(seven, false);
-//                 break;
-
-//             case 8:
-//                 oled_write_P(eight, false);
-//                 break;
-
-//             case 9:
-//                 oled_write_P(nine, false);
-//                 break;
-
-//         }
-
-//             mod = mod / 10;
-
-//     }
-//     return digits;
-// }
-
-// bool oled_task_user(void)
-// {
-
-//     static const char PROGMEM gwinworld1[] =
-//     {
-//         0x20,0x94,0x95, 0x96,0x97, 0x98,0x99, 0x9A,0x9B, 0x9C, 0x9D,0x9E, 0x9F,0x20,0x20, 0x00
-//     };
-//     static const char PROGMEM gwinworld2[] =
-//     {
-//         0x20,0xA0,0xA1, 0xA2,0xA3, 0xA4,0xA5, 0xA6,0xA7, 0xA8,0xA9, 0xAA, 0xAB,0x20,0x20,
-//          0x00
-//     };
-//     // Host Keyboard Layer Status
-//     static const char PROGMEM scroll_lock1[] =
-//     {
-//        0x80, 0x81, 0x00
-//     };
-//     static const char PROGMEM scroll_lock2[] =
-//     {
-//        0x86, 0x87,  0x00
-//     };
-//     static const char PROGMEM num_lock1[] =
-//     {
-//         0x82, 0x83, 0x00
-//     };
-//     static const char PROGMEM num_lock2[] =
-//     {
-//         0x88, 0x89, 0x00
-//     };
-//     static const char PROGMEM caps_lock1[] =
-//     {
-//         0x84, 0x85, 0x00
-//     };
-//     static const char PROGMEM caps_lock2[] =
-//     {
-//         0x8A, 0x8B, 0x00
-//     };
-//     static const char PROGMEM qmk_logo1[] =
-//     {
-//         0x8C, 0x8D, 0x8E, 0x20, 0x00
-//     };
-
-//     static const char PROGMEM qmk_logo2[] =
-//     {
-//          0x8F,0x90, 0x91, 0x92, 0x00
-//      };
-//     // Host Keyboard LED Status
-//     led_t led_state = host_keyboard_led_state();
-//     bool bigLogo = false;
-//     //11 chars go here.
-//     if(get_highest_layer(layer_state) == _LSYSL)
-//     {
-//         bigLogo = true;
-//         oled_write_P(gwinworld1, false);
-//     }
-//     else
-//     {
-
-//         oled_write_P(qmk_logo1, false);
-//         oled_write_P(PSTR("  Qwerty   "), false);
-//     }
-//     oled_write_P(led_state.scroll_lock ? scroll_lock1 : PSTR("  "), false);
-//     oled_write_P(led_state.num_lock ? num_lock1 : PSTR("  "), false);
-//     oled_write_P(led_state.caps_lock ? caps_lock1 : PSTR("  "), false);
-//     if(!bigLogo)
-//     {
-//         oled_write_P(qmk_logo2, false);
-//     }
-
-
-//     //11 chars go here.
-//     switch (get_highest_layer(layer_state))
-//     {
-
-//         case _LPURPLE:
-//             oled_write_P(PSTR("  Purple   "), false);
-//             break;
-//         case _LGREEN:
-//             oled_write_P(PSTR("  Green    "), false);
-//             break;
-//         case _LYELLOW:
-//             oled_write_P(PSTR("  Yellow   "), false);
-//             break;
-//         case _LAZURE:
-//             oled_write_P(PSTR("  Azure    "), false);
-//             break;
-//         case _LCYAN:
-//             oled_write_P(PSTR("  Cyan     "), false);
-//             break;
-//         case _LSYSL:
-//             // oled_write_P(PSTR("  System   "), false);
-
-//             oled_write_P(gwinworld2, false);
-//             break;
-//         default:
-
-//             oled_write_P(PSTR("           "), false);
-//     }
-
-
-//     oled_write_P(led_state.scroll_lock ? scroll_lock2 : PSTR("  "), false);
-//     oled_write_P(led_state.num_lock ? num_lock2 : PSTR("  "), false);
-//     oled_write_P(led_state.caps_lock ? caps_lock2 : PSTR("  "), false);
-
-//     static const char PROGMEM bar1[] = {0x01, 0x00};
-//     static const char PROGMEM bar2[] = {0x02, 0x00};
-//     static const char PROGMEM bar3[] = {0x03, 0x00};
-//     static const char PROGMEM bar4[] = {0x04, 0x00};
-//     static const char PROGMEM bar5[] = {0x05, 0x00};
-//     static const char PROGMEM bar6[] = {0x06, 0x00};
-//     static const char PROGMEM bar7[] = {0x07, 0x00};
-//     static const char PROGMEM bar8[] = {0x08, 0x00};
-//     static const char PROGMEM bar9[] = {0x09, 0x00};
-//     static const char PROGMEM bar10[] = {0x0B, 0x00};
-//     static const char PROGMEM bar11[] = {0x0C, 0x00};
-//     static const char PROGMEM bar12[] = {0x0E, 0x00};
-//     static const char PROGMEM bar13[] = {0x0F, 0x00};
-//     static const char PROGMEM bar14[] = {0x10, 0x00};
-//     static const char PROGMEM bar15[] = {0x11, 0x00};
-//     static const char PROGMEM bar16[] = {0x12, 0x00};
-//     static const char PROGMEM bar17[] = {0x13, 0x00};
-//     static const char PROGMEM bar18[] = {0x14, 0x00};
-
-
-//     short wpm = get_current_wpm();
-//     short ave = 0;
-//     if(wpm > max_wpm){
-//         max_wpm = wpm;
-//     }
-//     if(wpm < 1)
-//         ++reset;
-
-
-
-//     if(reset > 200){
-//         reset = 0;
-//         max_wpm = 0;
-//     }
-
-//     ave = ave/15;
-//     float wpmb = wpm;
-//     // oled_write_P( num_lock2 , false);
-//     // oled_write_P( caps_lock2, false);
-
-//     oled_write_P(PSTR("WPM  Pk: "), false);
-//     writeInt(max_wpm);
-//     oled_write_ln_P(PSTR(" "), false);
-//     writeInt(wpm);
-
-//     // oled_write_ln_P( PSTR(" ") , false);
-//     if(wpmb > 168){
-//         wpmb -= 168;
-//         for (short i=0; i<14; ++i)
-//         {
-//             if(wpmb > 5) oled_write_P( bar18, false);
-//             else if(wpmb == 5) oled_write_P( bar17, false);
-//             else if(wpmb == 4) oled_write_P( bar16 , false);
-//             else if(wpmb == 3) oled_write_P( bar15, false);
-//             else if(wpmb == 2) oled_write_P( bar14, false);
-//             else if(wpmb == 1) oled_write_P( bar13, false);
-//             else if(wpmb < 1) oled_write_P( bar12, false);
-//             wpmb -= 6;
-//         }
-//     }
-//     else if(wpmb > 84){
-//         wpmb -= 84;
-//         for (short i=0; i<14; ++i)
-//         {
-//             if(wpmb > 5) oled_write_P( bar12, false);
-//             else if(wpmb == 5) oled_write_P( bar11, false);
-//             else if(wpmb == 4) oled_write_P( bar10 , false);
-//             else if(wpmb == 3) oled_write_P( bar9, false);
-//             else if(wpmb == 2) oled_write_P( bar8, false);
-//             else if(wpmb == 1) oled_write_P( bar7, false);
-//             else if(wpmb < 1) oled_write_P( bar6, false);
-//             wpmb -= 6;
-//         }
-//     }
-//     else{
-//         for (short i=0; i<14; ++i)
-//         {
-//             if(wpmb > 5) oled_write_P( bar6, false);
-//             else if(wpmb == 5) oled_write_P( bar5 , false);
-//             else if(wpmb == 4) oled_write_P( bar4 , false);
-//             else if(wpmb == 3) oled_write_P( bar3, false);
-//             else if(wpmb == 2) oled_write_P( bar2, false);
-//             else if(wpmb == 1) oled_write_P( bar1, false);
-//             else if(wpmb < 1) oled_write_P(PSTR(" ") , false);
-//             wpmb -= 6;
-//         }
-//     }
-//     // oled_write_P( caps_lock2, false);
-//     // oled_write_ln_P(qmk_logo3, false);
-
-
-
-//     return false;
-// };
-
-// #endif
