@@ -39,7 +39,7 @@
 #define STL_SPC LSFT_T(KC_SPC)
 #define STL_CAP LSFT_T(KC_CAPS)
 #define STR_SPC RSFT_T(KC_SPC)
-#define LVN_ENT LT(_LYELLOW, KC_ENT)
+#define LVN_ENT LT(_LPURPLE, KC_ENT)
 #define LVN_ESC LT(_LYELLOW, KC_ESC)
 #define D_AZURE LT(_LAZURE, KC_DEL)
 #define E_AZURE LT(_LAZURE, KC_ENT)
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │ shift │   z   │   x   │   c   │   v   │   b   │                                                   │   n   │   m   │   ,   │   .   │   /   │ shift │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼──────┬──────╮                       ╭──────┬──────┼───────┼───────┼───────┼───────┼───────┼───────┤
- *     │ ctrl  │  win  │  alt  │yellow │purple │  del  │ enter│ cyan │                       │ azure│ space│ bkspc │purple │  [    │   ]   │   \   │ ctrl  │
+ *     │  CTL  │  win  │  alt  │CTL ALT│purple │  del  │ enter│ cyan │                       │ azure│ space│ bkspc │purple │  [    │   ]   │   \   │ ctrl  │
  *     │       │       │       │       │       │       │yellow│      │                       │      │      │       │       │       │       │       │       │
  *     ╰───────┴───────┴───────┴───────┴───────┴───────┼──────┼──────┤                       ├──────┼──────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
  *                                                     │ green│  esc │                       │yellow│ green│   
@@ -139,8 +139,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                        KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL ,
         AZ_CAPS,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                        KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,CY_QUOT,
         KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                                                        KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,LYELLOW,LPURPLE, KC_DEL, LVN_ENT, CTSHESC,                    LAZURE,PL_SPC,KC_BSPC,LPURPLE,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL,
-                                                           LGREEN, LCYAN,                   LYELLOW,LGREEN
+        KC_LCTL,KC_LGUI,KC_LALT,C(KC_LALT),LCYAN, KC_DEL, LVN_ENT, CTSHESC,                    LAZURE,PL_SPC,KC_BSPC,LAZURE,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL,
+                                                           LGREEN, LYELLOW,                   LYELLOW,LGREEN
     ),
 /**
  *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
@@ -257,10 +257,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ************************************************************************************************************************************************************/
     [_LAZURE]  = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,KC_W   ,KC_E   ,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
-        _______,_______,KC_A   ,KC_W   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
+        _______,KC_F   ,KC_A   ,KC_W   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
         _______,_______,_______,KC_S   ,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,KC_SPC ,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,                    _______,_______
     ),
 /**
