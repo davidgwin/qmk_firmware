@@ -140,8 +140,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                        KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL ,
         AZ_CAPS,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                        KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,CY_QUOT,
         KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                                                        KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,LYELLOW,LYELLOW,KC_DEL, LVP_ENT, CTSHESC,                    LAZURE,PL_SPC,KC_BSPC,LPURPLE,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL,
-                                                           LGREEN, LCYAN,                   LYELLOW,LGREEN
+        KC_LCTL,KC_LGUI,KC_LALT,LCYAN,LYELLOW,KC_DEL, LVP_ENT, CTSHESC,                    LAZURE,PL_SPC,KC_BSPC,LPURPLE,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL,
+                                                           LGREEN,KC_SPC,                   LYELLOW,LGREEN
     ),
 /**
  *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
@@ -261,7 +261,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,KC_W   ,KC_E   ,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
         _______,_______,KC_A   ,KC_W   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
         _______,_______,_______,KC_S   ,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
+        _______,_______,_______,_______,_______,KC_SPC ,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,                    _______,_______
     ),
 /**
