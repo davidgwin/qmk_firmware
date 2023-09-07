@@ -41,7 +41,7 @@
 #define STR_SPC RSFT_T(KC_SPC)
 #define LVN_ESC LT(_LYELLOW, KC_ESC)
 #define D_AZURE LT(_LAZURE, KC_DEL)
-#define E_AZURE LT(_LAZURE, KC_ENT)
+#define E_CYAN LT(_LCYAN, KC_ENT)
 #define D_CYAN LT(_LCYAN, KC_DEL)
 #define B_AZURE LT(_LAZURE, KC_BSPC)
 #define CY_QUOT LT(_LCYAN, KC_QUOT)
@@ -81,38 +81,7 @@ enum custom_keycodes {
     SQUID,
     BALL };
 
-// enum combos { FG_COMB, DF_COMB, SD_COMB, JK_COMB, KL_COMB, E1_COMB, E2_COMB, E3_COMB, XC_COMB, VC_COMB, MCM_COMB, CMDT_COMB, SYSL_COMB, COMBO_LENGTH };
 
-// uint16_t               COMBO_LEN    = COMBO_LENGTH;
-// const uint16_t PROGMEM sd_combo[]   = {KC_S, KC_D, COMBO_END};
-// const uint16_t PROGMEM df_combo[]   = {KC_D, KC_F, COMBO_END};
-// const uint16_t PROGMEM fg_combo[]   = {KC_F, KC_G, COMBO_END};
-// const uint16_t PROGMEM jk_combo[]   = {KC_J, KC_K, COMBO_END};
-// const uint16_t PROGMEM kl_combo[]   = {KC_K, KC_L, COMBO_END};
-// const uint16_t PROGMEM e1_combo[]   = {KC_E, KC_F, KC_1, COMBO_END};
-// const uint16_t PROGMEM e2_combo[]   = {KC_E, KC_F, KC_2, COMBO_END};
-// const uint16_t PROGMEM e3_combo[]   = {KC_E, KC_F, KC_3, COMBO_END};
-// const uint16_t PROGMEM xc_combo[]   = {KC_X, KC_C, COMBO_END};
-// const uint16_t PROGMEM cv_combo[]   = {KC_C, KC_V, COMBO_END};
-// const uint16_t PROGMEM mcm_combo[]  = {KC_M, KC_COMM, COMBO_END};
-// const uint16_t PROGMEM cmdt_combo[] = {KC_COMM, KC_DOT, COMBO_END};
-// const uint16_t PROGMEM sysl_combo[] = {KC_GRAVE, KC_1, KC_2, COMBO_END};
-
-// combo_t key_combos[] = {
-//     [DF_COMB] = COMBO(df_combo, LCTL(KC_LSFT)),
-//     [SD_COMB] = COMBO(sd_combo, LCTL(KC_LALT)),
-//     [JK_COMB] = COMBO(jk_combo, RCTL(KC_RSFT)),
-//     [KL_COMB] = COMBO(kl_combo, RCTL(KC_RALT)),
-//     [E1_COMB] = COMBO(e1_combo, EMAIL1),
-//     [E2_COMB] = COMBO(e2_combo, EMAIL2),
-//     [E3_COMB] = COMBO(e3_combo, EMAIL3),
-//     [XC_COMB] = COMBO(xc_combo, LYELLOW),
-//     [VC_COMB] = COMBO(cv_combo, LGREEN),
-//     [MCM_COMB] = COMBO(mcm_combo, LGREEN),
-//     [CMDT_COMB] = COMBO(cmdt_combo, LYELLOW),
-//     [SYSL_COMB] = COMBO(sysl_combo, LSYSL),
-//     [FG_COMB] = COMBO(fg_combo, KC_GRV), // for some reason KC_GRV is ESC in the combo?
-// };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -121,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                      KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL ,
         AZ_CAPS,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                      KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,CY_QUOT,
         KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                                                      KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,LVN_ESC,LGREEN, PRPL_DEL, KC_ENT, LCYAN,                   LAZURE, KC_SPC, PRPL_BSP,LGREEN,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL
+        KC_LCTL,KC_LGUI,KC_LALT,LVN_ESC,LGREEN, LPURPLE, E_CYAN, CTSHESC,                   LAZURE, KC_SPC, PRPL_BSP,LGREEN,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL
     ),
 
     [_COLMAK]  = LAYOUT(
@@ -150,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_LYELLOW] = LAYOUT(
         DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                    KC_SCRL,KC_NUM ,KC_PSLS,KC_PAST,KC_PMNS,_______,
-        _______,DM_REC1,DM_REC2,KC_UP  ,_______,_______,                                                    _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
-        _______,_______,KC_LEFT,KC_UP  ,KC_RGHT,_______,                                                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
-        _______,_______,_______,KC_DOWN,_______,_______,                                                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
+        _______,DM_REC1,DM_REC2,_______,_______,_______,                                                    _______,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,_______,KC_P0  ,KC_PDOT,KC_PENT,_______
     ),
 
@@ -161,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,KC_E   ,KC_W   ,_______,_______,                                                    _______,_______,KC_INS ,_______,KC_PSCR,_______,
         _______,KC_F   ,KC_A   ,KC_S   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,  KVMSW,
         _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,KC_SPC ,KC_ENT  ,                    TAZURE,_______,_______,_______,_______,_______,_______,  LSYSL
+        _______,_______,_______,_______,_______,_______,KC_SPC ,KC_ENT  ,                    TAZURE,_______,KC_DEL ,_______,_______,_______,_______,  LSYSL
     ),
 
     [_LCYAN]   = LAYOUT (
