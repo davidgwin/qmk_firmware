@@ -5,21 +5,16 @@
 #include "progmem.h"
 #include "crynu_display.h"
 #include <stdio.h>
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
 
 #define CRYNU_DYNAMIC_SIZE 128
 #define _QWERTY 0
-#define _COLMAK 1
-#define _LPURPLE 2
-#define _LGREEN 3
-#define _LYELLOW 4
-#define _LAZURE 5
-#define _LCYAN 6
-#define _LSYSL 7
-
+#define _COLMAK 1  // 2
+#define _LPURPLE 2 // 4
+#define _LGREEN 3  // 8
+#define _LYELLOW 4 // 16
+#define _LAZURE 5  // 32
+#define _LCYAN 6   // 64
+#define _LSYSL 7   // 128
 #define LGREEN MO(_LGREEN)
 #define LPURPLE MO(_LPURPLE)
 #define LYELLOW MO(_LYELLOW)
@@ -41,6 +36,8 @@
 #define STR_SPC RSFT_T(KC_SPC)
 #define LVY_ENT LT(_LYELLOW, KC_ENT)
 #define LVP_ENT LT(_LPURPLE, KC_ENT)
+#define LSG_ENT RSG_T(KC_ENT)
+#define RSG_BKT RSG_T(KC_LBRC)
 #define LVN_ESC LT(_LYELLOW, KC_ESC)
 #define D_AZURE LT(_LAZURE, KC_DEL)
 #define E_AZURE LT(_LAZURE, KC_ENT)
@@ -66,10 +63,11 @@
 #define GUI_RIGHT LGUI(KC_RIGHT)
 #define GUI_L LGUI(KC_L)
 #define CTSHESC C_S_T(KC_ESC)
+#define SFTALT LSFT(KC_LALT)
 
 #define AZ_CAPS LT(_LAZURE, KC_CAPS)
 
-bool enter = false, squid = false, ball = false, half = false;
+bool show_alternate = false;
 
 enum custom_keycodes {
     C_UPDAT = SAFE_RANGE,
@@ -78,43 +76,9 @@ enum custom_keycodes {
     EMAIL1,
     EMAIL2,
     EMAIL3,
-    EMAIL4,
-    FIRE,
-    SQUID,
-    BALL };
+    EMAIL4
+     };
 
-// enum combos { FG_COMB, DF_COMB, SD_COMB, JK_COMB, KL_COMB, E1_COMB, E2_COMB, E3_COMB, XC_COMB, VC_COMB, MCM_COMB, CMDT_COMB, SYSL_COMB, COMBO_LENGTH };
-
-// uint16_t               COMBO_LEN    = COMBO_LENGTH;
-// const uint16_t PROGMEM sd_combo[]   = {KC_S, KC_D, COMBO_END};
-// const uint16_t PROGMEM df_combo[]   = {KC_D, KC_F, COMBO_END};
-// const uint16_t PROGMEM fg_combo[]   = {KC_F, KC_G, COMBO_END};
-// const uint16_t PROGMEM jk_combo[]   = {KC_J, KC_K, COMBO_END};
-// const uint16_t PROGMEM kl_combo[]   = {KC_K, KC_L, COMBO_END};
-// const uint16_t PROGMEM e1_combo[]   = {KC_E, KC_F, KC_1, COMBO_END};
-// const uint16_t PROGMEM e2_combo[]   = {KC_E, KC_F, KC_2, COMBO_END};
-// const uint16_t PROGMEM e3_combo[]   = {KC_E, KC_F, KC_3, COMBO_END};
-// const uint16_t PROGMEM xc_combo[]   = {KC_X, KC_C, COMBO_END};
-// const uint16_t PROGMEM cv_combo[]   = {KC_C, KC_V, COMBO_END};
-// const uint16_t PROGMEM mcm_combo[]  = {KC_M, KC_COMM, COMBO_END};
-// const uint16_t PROGMEM cmdt_combo[] = {KC_COMM, KC_DOT, COMBO_END};
-// const uint16_t PROGMEM sysl_combo[] = {KC_GRAVE, KC_1, KC_2, COMBO_END};
-
-// combo_t key_combos[] = {
-//     [DF_COMB] = COMBO(df_combo, LCTL(KC_LSFT)),
-//     [SD_COMB] = COMBO(sd_combo, LCTL(KC_LALT)),
-//     [JK_COMB] = COMBO(jk_combo, RCTL(KC_RSFT)),
-//     [KL_COMB] = COMBO(kl_combo, RCTL(KC_RALT)),
-//     [E1_COMB] = COMBO(e1_combo, EMAIL1),
-//     [E2_COMB] = COMBO(e2_combo, EMAIL2),
-//     [E3_COMB] = COMBO(e3_combo, EMAIL3),
-//     [XC_COMB] = COMBO(xc_combo, LYELLOW),
-//     [VC_COMB] = COMBO(cv_combo, LGREEN),
-//     [MCM_COMB] = COMBO(mcm_combo, LGREEN),
-//     [CMDT_COMB] = COMBO(cmdt_combo, LYELLOW),
-//     [SYSL_COMB] = COMBO(sysl_combo, LSYSL),
-//     [FG_COMB] = COMBO(fg_combo, KC_GRV), // for some reason KC_GRV is ESC in the combo?
-// };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /**
@@ -122,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *     │   ~   │   1   │   2   │   3   │   4   │   5   │                                                   │   6   │   7   │   8   │   9   │  0    │  -    │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │  tab  │   q   │   w   │   e   │   r   │   t   │                                                   │   y   │   u   │   i   │   o   │   p   │  =    │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                              a                     ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │ caps  │   a   │   s   │   d   │   f   │   g   │                                                   │   h   │   j   │   k   │   l   │   ;   │  '    │
  *     │ azure │       │       │       │       │       │                                                   │       │       │       │       │       │ cyan  │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -140,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                        KC_Y,    KC_U,  KC_I,   KC_O,   KC_P,   KC_EQL ,
         AZ_CAPS,KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                        KC_H,    KC_J,  KC_K,   KC_L,   KC_SCLN,CY_QUOT,
         KC_LSFT,KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                                                        KC_N,    KC_M,  KC_COMM,KC_DOT, KC_SLSH,KC_RSFT,
-        KC_LCTL,KC_LGUI,KC_LALT,LCYAN,LYELLOW,KC_DEL, LVP_ENT, CTSHESC,                    LAZURE,PL_SPC,KC_BSPC,LPURPLE,KC_LBRC,KC_RBRC,KC_BSLS,KC_RCTL,
+        KC_LCTL,KC_LGUI,KC_LALT,LCYAN,LYELLOW,PRPL_DEL,KC_ENT, CTSHESC,                    LAZURE,KC_SPC,PRPL_BSP,  SFTALT,RSG_BKT,KC_RBRC,KC_BSLS,  KC_RCTL,
                                                            LGREEN,KC_SPC,                   LYELLOW,LGREEN
     ),
 /**
@@ -178,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │       │       │       │   (   │   )   │       │                                                   │       │ WS <  │       │  WS > │       │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼───────┬───────╮                   ╭───────┬───────┼───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │       │       │       │       │       │                   │       │       │       │       │       │       │       │       │
+ *     │       │  MENU │       │       │       │       │       │       │                   │       │       │       │       │       │       │       │       │
  *     ╰───────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                   ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
  *                                                     │       │       │                   │       │       │   
  *                                                     ╰───────┴───────╯                   ╰───────┴───────╯
@@ -189,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,KC_LCBR ,KC_RCBR,_______,                                                   _______,_______,_______,_______,_______,KC_PIPE,
         _______,_______,_______,KC_LBRC ,KC_RBRC,_______,                                                   KC_LEFT,KC_DOWN,KC_UP  ,KC_RGHT,_______,_______,
         _______,_______,_______,KC_LPRN ,KC_RPRN,_______,                                                   _______,KM_DLFT,_______,KM_DRGT,_______,_______,
-        _______,_______, _______,_______,_______,_______,_______,_______,                   _______,_______,_______,_______,_______,_______,_______,_______,
+        _______,KC_APP , _______,_______,_______,_______,_______,_______,                   _______,_______,_______,_______,_______,_______,_______,_______,
                                                          _______,_______,                   _______,_______
     ),
 /**
@@ -259,8 +223,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LAZURE]  = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
         _______,_______,_______,KC_W   ,KC_E   ,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
-        _______,_______,KC_A   ,KC_W   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
-        _______,_______,_______,KC_S   ,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
+        _______,_______,KC_A   ,KC_S   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,KC_SPC ,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
                                                         _______,_______,                    _______,_______
     ),
@@ -337,7 +301,6 @@ void dynamic_macro_record_key_user(int8_t direction, keyrecord_t *record)
     
 }
 
-
 // process_record_user is called each time the keyboard matrix is read.
 bool process_record_user(uint16_t keycode, keyrecord_t *record) 
 {
@@ -393,6 +356,48 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             } else {
             }
             break;
+        // case M_COLEMAK:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_PURPLE:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_GREEN:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_YELLOW:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_AZURE:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_CYAN:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
+        // case M_LSYSL:
+        //     if (record->event.pressed) {
+                
+        //     } else {
+        //     }
+        //     break;
     }
 
     return true;
@@ -405,166 +410,97 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 
 
-bool oled_task_user(void) {
-
-
+bool oled_task_user(void) 
+{
     char rawbuf[128];
+    char *layerText;
     led_t led_state = host_keyboard_led_state();
 
-
-    for(short i=0; i<4; ++i)
+    switch (get_highest_layer(layer_state)) 
     {
-
-        oled_set_cursor(0,i);
-        
-
-        switch (get_highest_layer(layer_state)) {
-            case _LPURPLE:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_purple[i][j];
-                }
-                break;
-            case _LGREEN:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_green[i][j];
-                }
-                break;
-            case _LYELLOW:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_yellow[i][j];
-                }
-                break;
-            case _LAZURE:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_azure[i][j];
-                }
-                break;
-            case _LCYAN:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_cyan[i][j];
-                }
-                break;
-            case _LSYSL:
-                for(short j=0; j< end; ++j)
-                {
-                    rawbuf[j] = raw_lsysl[i][j];
-                }
-                break;
-            default:
-                if (layer_state & 2) {
-                    // colmak
-                    for(short j=0; j< end; ++j)
-                    {
-                        rawbuf[j] = raw_colmak[i][j];
-                    }
-                } else {
-                    // qwerty
-                    for(short j=0; j< end; ++j)
-                    {
-                        rawbuf[j] = raw_qwerty[i][j];
-                    }
-                }
-        }
-
-        short index = 96;
-
-        if(i<2)
-        {
-
-
-            if(led_state.num_lock)
-            {
-                for(short j=0; j<16; ++j)
-                {
-                    rawbuf[index] = raw_num_lock[i][j];
-                    ++index;
-                }
+        case _LPURPLE:
+            layerText = "Purple";
+            break;
+        case _LGREEN:
+            layerText = "Green";
+            break;
+        case _LYELLOW:
+            layerText = "Yellow";
+            break;
+        case _LAZURE:
+            layerText = "Azure";
+            break;
+        case _LCYAN:
+            layerText = "Cyan";
+            break;
+        case _LSYSL:
+            layerText = "LSYSL";
+            break;
+        default:
+            if (layer_state & 2) {
+            layerText = "Colemak";
+            } else {
+            layerText = "Crynu";
             }
-            index = 112;
-            if(led_state.caps_lock)
-            {
-                for(short j=0; j<16; ++j)
-                {
-                    rawbuf[index] = raw_caps_lock[i][j];
-                    ++index;
-                }
-            }
-        }
-        else
-        {
-            
-            index = 112;
-            if(led_state.scroll_lock)
-            {
-                for(short j=0; j<16; ++j)
-                {
-                    rawbuf[index] = raw_scroll_lock[i-2][j];
-                    ++index;
-                }
-            }
-            
-            index = 94;
-            char dyn_str[8];
-            char dis_str[18];
-        
-            if(i == 2 )
-            {
-                if(crynu_rec)
-                {
-                    dyn_str[0] = 'R';
-                    dyn_str[1] = 'E';
-                    dyn_str[2] = 'C';
-                }
-                else 
-                {
-                    dyn_str[0] = ' ';
-                    dyn_str[1] = ' ';
-                    dyn_str[2] = ' ';
-                }
-                for(int h=0; h<3; ++h)
-                {
-                    for(int j = 0; j<6; ++j)
-                    {
-                        dis_str[j + h*6] = font[(dyn_str[h] * 6 )+j];
-                    }
-                }
-                for(short j=0; j<18; ++j)
-                {
-                    rawbuf[index] = dis_str[j];
-                    ++index;
-                }
-            }
-        
-            if(i == 3)
-            {
-                sprintf(dyn_str, "%3d", dynamic_current);
-                for(int h=0; h<3; ++h)
-                {
-                    for(int j = 0; j<6; ++j)
-                    {
-                        dis_str[j + h*6] = font[(dyn_str[h] * 6 )+j];
-                    }
-                }
-                for(short j=0; j<18; ++j)
-                {
-                    rawbuf[index] = dis_str[j];
-                    ++index;
-                }
-            }
-            
-
-        }
-
-
-
-        oled_write_raw_P(rawbuf, sizeof(rawbuf));
     }
+    
+    int locks = 0;
 
+    if(led_state.num_lock)
+    {
+        locks = locks | NUM;
+    }
+    if(led_state.caps_lock)
+    {
+        locks = locks | CAPS;
+    }
+    if(led_state.scroll_lock)
+    {
+        locks = locks | SCROLL;
+    }
+    if(crynu_rec)
+    {
+        locks = locks | REC;
+    }
+    setLocks(locks);
+
+    if(show_alternate)
+    {
+        // oled_set_cursor(0,0);
+        // oled_write_ln(show_alternate_message_1, false);
+        // oled_write_ln(show_alternate_message_2, false);
+        // oled_write_ln(show_alternate_message_3, false);
+        // oled_write_ln(show_alternate_message_4, false);
+
+    }
+    else
+    {
+        for(short i=0; i<4; ++i)
+        {
+
+            oled_set_cursor(0,i);
+            if(i < 2)
+            {
+                largeFont(layerText, i, rawbuf);
+            }
+            else 
+            {
+                char layers[10];
+                layers[0] = layer_state & 2   ? 0x07 :' ';
+                layers[1] = layer_state & 4   ? 0x08 :' ';
+                layers[2] = layer_state & 8   ? 0x0e :' ';
+                layers[3] = layer_state & 16  ?  '#' :' ';
+                layers[4] = layer_state & 32  ? 0x10 :' ';
+                layers[5] = layer_state & 64  ? 0x11 :' ';
+                layers[6] = layer_state & 128 ? 0x09 :' ';
+                layers[7] = 0;
+                largeFont(layers, i % 2, rawbuf);
+            }
+            getLockStateImage(i,rawbuf);
+
+            oled_write_raw_P(rawbuf, sizeof(rawbuf));
+        }    
+    }
     return false;
 };
 
