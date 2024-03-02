@@ -26,45 +26,13 @@
 #define LSYSL MO(_LSYSL)
 
 #define CY_QUOT LT(_LCYAN, KC_QUOT)
-#define RG_CAPS RGUI_T(KC_CAPS)
-#define CTL_ENT LCTL_T(KC_ENT)
-#define CTR_ENT RCTL_T(KC_ENT)
-#define CTL_SPC LCTL_T(KC_SPC)
-#define CTR_SPC RCTL_T(KC_SPC)
-#define STL_SPC LSFT_T(KC_SPC)
-#define STL_CAP LSFT_T(KC_CAPS)
-#define STR_SPC RSFT_T(KC_SPC)
-#define LVY_ENT LT(_LYELLOW, KC_ENT)
-#define LVP_ENT LT(_LPURPLE, KC_ENT)
-#define LSG_ENT RSG_T(KC_ENT)
 #define RSG_BKT RSG_T(KC_LBRC)
-#define LVN_ESC LT(_LYELLOW, KC_ESC)
-#define D_AZURE LT(_LAZURE, KC_DEL)
-#define E_AZURE LT(_LAZURE, KC_ENT)
-#define D_CYAN LT(_LCYAN, KC_DEL)
-#define B_AZURE LT(_LAZURE, KC_BSPC)
-#define K_CYAN LT(_LCYAN, KC_K)
-#define FLPURPLE LT(_LPURPLE, KC_F)
 #define PRPL_BSP LT(_LPURPLE, KC_BSPC)
-#define PL_SPC LT(_LPURPLE, KC_SPC)
 #define PRPL_DEL LT(_LPURPLE, KC_DEL)
-#define YEL_DEL LT(_LYELLOW, KC_DEL)
-#define GRN_BSP LT(_LGREEN, KC_BSPC)
-#define GRN_DEL LT(_LGREEN, KC_DEL)
-#define GRN_CAP LT(_LGREEN, KC_CAPS)
-#define ALT_RGT RALT_T(KC_RGHT)
-#define A_SHFT RSFT_T(KC_A)
-#define CL_SHFT RSFT_T(KC_SCLN)
 #define KM_DLFT LGUI(LCTL(KC_LEFT))
 #define KM_DRGT LGUI(LCTL(KC_RIGHT))
-#define GUI_L LGUI(KC_L)
-#define GUI_E LGUI(KC_E)
-#define GUI_LEFT LGUI(KC_LEFT)
-#define GUI_RIGHT LGUI(KC_RIGHT)
-#define GUI_L LGUI(KC_L)
 #define CTSHESC C_S_T(KC_ESC)
 #define SFTALT LSFT(KC_LALT)
-
 #define AZ_CAPS LT(_LAZURE, KC_CAPS)
 
 bool show_alternate = false;
@@ -92,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │ shift │   z   │   x   │   c   │   v   │   b   │                                                   │   n   │   m   │   ,   │   .   │   /   │ shift │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼──────┬──────╮                       ╭──────┬──────┼───────┼───────┼───────┼───────┼───────┼───────┤
- *     │ ctrl  │  win  │  alt  │yellow │ yellow│  del  │ enter│ esc  │                       │ azure│ space│ bkspc │purple │  [    │   ]   │   \   │ ctrl  │
+ *     │ ctrl  │  win  │  alt  │ cyan  │ yellow│  del  │ enter│ esc  │                       │ azure│ space│ bkspc │purple │  [    │   ]   │   \   │ ctrl  │
  *     │       │       │       │       │       │       │purple│ c_s  │                       │      │      │       │       │       │       │       │       │
  *     ╰───────┴───────┴───────┴───────┴───────┴───────┼──────┼──────┤                       ├──────┼──────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
  *                                                     │ green│  esc │                       │yellow│ green│   
@@ -184,11 +152,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                  ╭───────┬───────┬───────┬───────┬───────┬───────╮
  *     │R STOP │R1 PLAY│R2 PLAY│       │       │       │                                                  │SCL LCK│NUM LCK│   +   │   *   │   -   │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                  ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │R1 REC │R2 REC │  UP   │       │       │                                                  │INSERT │    7  │    8  │    9  │   +   │       │
+ *     │       │R1 REC │R2 REC │       │       │       │                                                  │INSERT │    7  │    8  │    9  │   +   │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                  ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │ LEFT  │  UP   │ RIGHT │       │                                                  │       │    4  │    5  │    6  │   .   │       │
+ *     │       │       │       │       │       │       │                                                  │       │    4  │    5  │    6  │   .   │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                  ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │ DOWN  │       │       │                                                  │       │    1  │    2  │    3  │   =   │       │
+ *     │       │       │       │       │       │       │                                                  │       │    1  │    2  │    3  │   =   │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼───────┬───────╮                  ╭───────┬───────┼───────┼───────┼───────┼───────┼───────┼───────┤
  *     │       │       │       │       │       │       │       │       │                  │       │       │       │    0  │    0  │   .   │ ENTER │       │
  *     ╰───────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                  ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
@@ -198,38 +166,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  ************************************************************************************************************************************************************/
     [_LYELLOW] = LAYOUT(
         DM_RSTP,DM_PLY1,DM_PLY2,_______,_______,_______,                                                    KC_SCRL,KC_NUM ,KC_PSLS,KC_PAST,KC_PMNS,_______,
-        _______,DM_REC1,DM_REC2,KC_UP  ,_______,_______,                                                    KC_INS ,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
-        _______,_______,KC_LEFT,KC_UP  ,KC_RGHT,_______,                                                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
-        _______,_______,_______,KC_DOWN,_______,_______,                                                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
+        _______,DM_REC1,DM_REC2,_______,_______,_______,                                                    KC_INS ,KC_P7  ,KC_P8  ,KC_P9  ,KC_PPLS,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,KC_P4  ,KC_P5  ,KC_P6  ,KC_PCMM,_______,
+        _______,_______,_______,_______,_______,_______,                                                    _______,KC_P1  ,KC_P2  ,KC_P3  ,KC_PEQL,_______,
         _______,_______,_______,_______,_______,_______,_______,_______,                    _______,_______,_______,KC_P0  ,KC_P0  ,KC_PDOT,KC_PENT,_______,
                                                         _______,_______,                    _______,_______
     ),
 /**
- *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
- *     │       │       │       │       │       │       │                                                   │       │       │       │       │       │       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │   W   │   E   │       │                                                   │       │       │  INS  │       │PRNTSCN│       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │   A   │   W   │   D   │       │                                                   │ HOME  │ PG DN | PG UP │  END  │       │       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │   S   │       │       │                                                   │       │       │       │       │       │       │
+ *     ╭──────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
+ *     │       │       │       │       │       │       │                                                    │       │       │       │       │       │       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │       │       │   W   │   E   │       │                                                    │       │       │  INS  │       │PRNTSCN│       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │   G   │   A   │   S   │   D   │  F    │                                                    │ HOME  │ PG DN | PG UP │  END  │       │       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │       │       │       │       │       │                                                    │       │       │       │       │       │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼───────┬───────╮                   ╭───────┬───────┼───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │       │       │       │       │       │                   │       │       │       │       │       │       │       │ LSYSL │
- *     ╰───────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                   ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
- *                                                     │       │       │                   │       │       │   
- *                                                     ╰───────┴───────╯                   ╰───────┴───────╯
+ *     │       │       │       │       │       │       │       │       │                    │       │       │       │       │       │       │       │ LSYSL │
+ *     ╰──────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                    ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
+ *                                                     │       │       │                    │       │       │   
+ *                                                    ╰───────┴───────╯                   ╰───────┴───────╯
  *     
  ************************************************************************************************************************************************************/
     [_LAZURE]  = LAYOUT(
         _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,KC_W   ,KC_E   ,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
-        _______,_______,KC_A   ,KC_S   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
+        _______,_______,KC_E   ,KC_W   ,_______,_______,                                                    _______,_______, KC_INS,_______,KC_PSCR,_______,
+        _______,KC_F   ,KC_A   ,KC_S   ,KC_D   ,_______,                                                    KC_HOME,KC_PGDN,KC_PGUP,KC_END ,_______,_______,
         _______,_______,_______,_______,_______,_______,                                                    _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,KC_SPC ,_______,_______,                    _______,_______,_______,_______,_______,_______,_______,_______,
-                                                        _______,_______,                    _______,_______
+                                                        KC_L   ,KC_LALT,                    _______,_______
     ),
 /**
- *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                  ╭───────┬───────┬───────┬───────┬───────┬───────╮
+ *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                ╭───────┬───────┬───────┬───────┬───────┬───────╮
  *     │       │EMAIL 1│EMAIL 2│EMAIL 3│EMAIL 4│       │                                                  │       │       │       │       │       │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                  ├───────┼───────┼───────┼───────┼───────┼───────┤
  *     │       │       │       │       │       │       │                                                  │       │ UPDATE│       │       │       │       │
@@ -282,6 +250,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // static int8_t crynu_dynamic2 = 0;
 static int8_t dynamic_current = 0;
 static bool crynu_rec = false;
+static int enter_ani = 0;
 
 void dynamic_macro_record_start_user(int8_t direction)
 {
@@ -305,7 +274,14 @@ void dynamic_macro_record_key_user(int8_t direction, keyrecord_t *record)
 bool process_record_user(uint16_t keycode, keyrecord_t *record) 
 {
     switch (keycode) {
-                case C_UPDAT:
+        case KC_ENTER:
+         // Play a tone when enter is pressed
+            if (record->event.pressed) 
+            {
+                enter_ani = 1;
+            }
+            return true; // Let QMK send the enter press/release events
+        case C_UPDAT:
             if (record->event.pressed) {
                 // when keycode QMKBEST is pressed
                 SEND_STRING("sudo apt update && sudo apt upgrade");
@@ -485,16 +461,29 @@ bool oled_task_user(void)
             }
             else 
             {
-                char layers[10];
-                layers[0] = layer_state & 2   ? 0x07 :' ';
-                layers[1] = layer_state & 4   ? 0x08 :' ';
-                layers[2] = layer_state & 8   ? 0x0e :' ';
-                layers[3] = layer_state & 16  ?  '#' :' ';
-                layers[4] = layer_state & 32  ? 0x10 :' ';
-                layers[5] = layer_state & 64  ? 0x11 :' ';
-                layers[6] = layer_state & 128 ? 0x09 :' ';
-                layers[7] = 0;
-                largeFont(layers, i % 2, rawbuf);
+                switch (enter_ani)
+                {
+                    case 1:
+                        
+                        break;
+                    
+                    default:
+                    {
+                        char layers[10];
+                        layers[0] = layer_state & 2   ? 0x07 :' ';
+                        layers[1] = layer_state & 4   ? 0x0F :' ';
+                        layers[2] = layer_state & 8   ? 0x0e :' ';
+                        layers[3] = layer_state & 16  ?  '#' :' ';
+                        layers[4] = layer_state & 32  ? 0x10 :' ';
+                        layers[5] = layer_state & 64  ? 0x11 :' ';
+                        layers[6] = layer_state & 128 ? 0x15 :' ';
+                        layers[7] = 0;
+                        largeFont(layers, i % 2, rawbuf);
+                        break;
+                    }
+
+                }
+                
             }
             getLockStateImage(i,rawbuf);
 

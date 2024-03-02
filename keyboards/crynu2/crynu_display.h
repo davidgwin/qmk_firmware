@@ -103,7 +103,8 @@ void getLockStateImage(const int row, char *buffer)
     {
         buffer[i+LOCK1] = getFont2At( one, i + passAddition );
     }
-                   
+    buffer[LOCK2 - 1] = 0;              
+    buffer[LOCK2 - 2] = 0;              
     for(int i=0; i<LARGE_CHARACTER_WIDTH; ++i)
     {
         buffer[i+LOCK2] = getFont2At( two, i + passAddition );
