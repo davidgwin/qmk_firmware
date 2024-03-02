@@ -463,6 +463,10 @@ bool oled_task_user(void)
             {
                 switch (enter_ani)
                 {
+                    /**
+                     * tank at char 01, 02, 03
+                     * projectile at 04 - 9. Locations 4 and 5 are frame 3 and 4. Locations 5-9 are to be incremented through. 
+                    */
                     case 1:
                         
                         break;
