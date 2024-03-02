@@ -50,12 +50,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOFT_SERIAL_PIN D2
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
+// #define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
+// #define LOCKING_RESYNC_ENABLE
 
 /* Enables This makes it easier for fast typists to use dual-function keys */
-#define PERMISSIVE_HOLD
+// #define PERMISSIVE_HOLD
 
 /* ws2812 RGB LED */
 
@@ -68,7 +68,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // if this pin is high it is the left low is the right.
 #define SPLIT_HAND_PIN F5
 #define RGBLIGHT_SLEEP
-#define SPLIT_TRANSPORT_MIRROR
+#define SPLIT_TRANSPORT_MIRROR // this syncs the matrix state between halves.
+#define SPLIT_LAYER_STATE_ENABLE // this syncs the layer state between halves.
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
