@@ -5,16 +5,49 @@
 #include "crynu_font.h"
 #include <stdio.h>
 
+#define FORMAT_MESSAGE_FORMAT_SIZE 10
+
 const int DISPLAY_WIDTH = 128;
+const int SMALL_CHAR_WIDTH = 6;
+const int MAX_SMALL_CHARACTERS = DISPLAY_WIDTH / SMALL_CHAR_WIDTH;
 const int LARGE_CHARACTER_WIDTH = 12;
-const int LOCK1 = DISPLAY_WIDTH - LARGE_CHARACTER_WIDTH - LARGE_CHARACTER_WIDTH - 2;
-const int LOCK2 = DISPLAY_WIDTH - LARGE_CHARACTER_WIDTH;
+const int LOCK1 = DISPLAY_WIDTH - LARGE_CHARACTER_WIDTH - LARGE_CHARACTER_WIDTH - 2; // position in display of lock1
+const int LOCK2 = DISPLAY_WIDTH - LARGE_CHARACTER_WIDTH; // position in display of lock2
 const int MESSAGE_MAX = LOCK1;
+const int MAX_LARGE_CHARACTERS = MESSAGE_MAX / LARGE_CHARACTER_WIDTH;
+
+char *formFontMessageFormat = "%%-%d.%ds"; // contains the form of the large font sprintf format string.
+const int largeFontMessageSize = MAX_LARGE_CHARACTERS + 1;
+char largeFontMessageFormat[FORMAT_MESSAGE_FORMAT_SIZE];
+const int smallFontMessageSize = MAX_SMALL_CHARACTERS + 1;
+char smallFontMessageFormat[FORMAT_MESSAGE_FORMAT_SIZE];
 
 enum LOCK{ NONE = 0, CAPS = 1, NUM = 2, SCROLL = 4, REC = 8 };
 
 int crynu_lock_state = 0;
 
+
+void smallFont(const char *message, char *buffer)
+{    
+    char fomattedMessage[smallFontMessageSize];
+    sprintf(smallFontMessageFormat, formFontMessageFormat, MAX_SMALL_CHARACTERS, MAX_SMALL_CHARACTERS); // dynamically creates the small message sprintf format string. 
+    sprintf(fomattedMessage,smallFontMessageFormat, message);
+    int characterIndex = SMALL_CHAR_WIDTH, 
+    character = -1;
+    for(int i=0; i<LOCK2; ++i)
+    {
+        if(characterIndex >= SMALL_CHAR_WIDTH)
+        {
+            ++character;
+            characterIndex = 0;
+        }
+        int expandedAddress = fomattedMessage[character] * SMALL_CHAR_WIDTH + characterIndex;
+        buffer[i] = font[expandedAddress];
+        ++characterIndex;
+    }
+
+
+}
 
 /**
  * character is the character to retrieve
@@ -30,19 +63,13 @@ char getFont2At(const int character, const int index )
  * message is the text pass is the top or the bottom
  * half of the double hight character.
  ****************************************************/
-void largeFont(const char *message, int pass, char *buffer)
+void largeFont(const char *message, int pass, char *buffer) // largeFont(const char *message, int pass, char *buffer)
 {
-    const int CHARACTER_MAX = MESSAGE_MAX / LARGE_CHARACTER_WIDTH;
-    char *preformat = "%%-%d.%ds";
-    char format[10];
-    char fomattedMessage[CHARACTER_MAX + 1];
+    char fomattedMessage[largeFontMessageSize];
+    sprintf(largeFontMessageFormat,formFontMessageFormat, MAX_LARGE_CHARACTERS, MAX_LARGE_CHARACTERS); // dynamically creates the large message sprintf format string.
+    sprintf(fomattedMessage,largeFontMessageFormat, message);
 
-    sprintf(format,preformat,CHARACTER_MAX, CHARACTER_MAX);
-    sprintf(fomattedMessage,format, message);
-
-    int characterIndex = LARGE_CHARACTER_WIDTH, 
-    character = -1, 
-    passAddition = 0;
+    int characterIndex = LARGE_CHARACTER_WIDTH, character = -1, passAddition = 0;
     if(pass) passAddition = LARGE_CHARACTER_WIDTH;
     for(int i=0; i<LOCK2; ++i)
     {
