@@ -24,4 +24,6 @@
 #define DYNAMIC_MACRO_SIZE 128
 // #define DYNAMIC_MACRO_USER_CALL
 
+#define OLED_UPDATE_INTERVAL 50
+
 #endif

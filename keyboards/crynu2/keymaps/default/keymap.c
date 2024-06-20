@@ -173,19 +173,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,_______,                    _______,_______
     ),
 /**
- *     ╭──────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
- *     │       │       │       │       │       │       │                                                    │       │       │       │       │       │       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │   W   │   E   │       │                                                    │       │       │  INS  │       │PRNTSCN│       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │   G   │   A   │   S   │   D   │  F    │                                                    │ HOME  │ PG DN | PG UP │  END  │       │       │
- *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                    ├───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │       │       │       │                                                    │       │       │       │       │       │       │
+ *     ╭───────┬───────┬───────┬───────┬───────┬───────╮                                                   ╭───────┬───────┬───────┬───────┬───────┬───────╮
+ *     │       │       │       │       │       │       │                                                   │       │       │       │       │       │       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │       │       │   W   │   E   │       │                                                   │       │       │  INS  │       │PRNTSCN│       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │   G   │   A   │   S   │   D   │  F    │                                                   │ HOME  │ PG DN | PG UP │  END  │       │       │
+ *     ├───────┼───────┼───────┼───────┼───────┼───────┤                                                   ├───────┼───────┼───────┼───────┼───────┼───────┤
+ *     │       │       │       │       │       │       │                                                   │       │       │       │       │       │       │
  *     ├───────┼───────┼───────┼───────┼───────┼───────┼───────┬───────╮                   ╭───────┬───────┼───────┼───────┼───────┼───────┼───────┼───────┤
- *     │       │       │       │       │       │       │       │       │                    │       │       │       │       │       │       │       │ LSYSL │
- *     ╰──────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                    ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
- *                                                     │       │       │                    │       │       │   
- *                                                    ╰───────┴───────╯                   ╰───────┴───────╯
+ *     │       │       │       │       │       │       │       │       │                   │       │       │       │       │       │       │       │ LSYSL │
+ *     ╰───────┴───────┴───────┴───────┴───────┴───────┼───────┼───────┤                   ├───────┼───────┼───────┴───────┴───────┴───────┴───────┴───────╯ 
+ *                                                     │       │       │                   │       │       │   
+ *                                                     ╰───────┴───────╯                   ╰───────┴───────╯
  *     
  ************************************************************************************************************************************************************/
     [_LAZURE]  = LAYOUT(
@@ -384,7 +384,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
     static const short end = 128;
 
-
+static char gun [] = {
+        0x01,0x02,0x03
+    };
+static char shot [4] = {
+        0x06,0x07,0x08,0x09
+    };
 
 bool oled_task_user(void) 
 {
@@ -461,32 +466,60 @@ bool oled_task_user(void)
             }
             else 
             {
-                switch (enter_ani)
+                if(enter_ani && i>2)
                 {
+
                     /**
                      * tank at char 01, 02, 03
                      * projectile at 04 - 9. Locations 4 and 5 are frame 3 and 4. Locations 5-9 are to be incremented through. 
                     */
-                    case 1:
-                        enter_ani = 0;
-                        break;
-                    
-                    default:
+                
+                    int enterIdx = 0;
+                    char ani[MAX_SMALL_CHARACTERS];
+                    if(enter_ani < 18)
                     {
-                        char layers[10];
-                        layers[0] = layer_state & 2   ? 0x07 :' ';
-                        layers[1] = layer_state & 4   ? 0x0F :' ';
-                        layers[2] = layer_state & 8   ? 0x0e :' ';
-                        layers[3] = layer_state & 16  ?  '#' :' ';
-                        layers[4] = layer_state & 32  ? 0x10 :' ';
-                        layers[5] = layer_state & 64  ? 0x11 :' ';
-                        layers[6] = layer_state & 128 ? 0x15 :' ';
-                        layers[7] = 0;
-                        largeFont(layers, i % 2, rawbuf);
-                        break;
-                    }
+                        enterIdx = enter_ani/7;                        
+                        ani[0] = gun[enterIdx];
+                        ani[1] = enterIdx == 2 ? 0x04 : 0x20;
 
+                    }
+                    else
+                    {
+                        enterIdx = (enter_ani-18)/2  ;
+                        for(int j=1; j<MAX_SMALL_CHARACTERS; ++j)
+                        {
+                            if(enterIdx == j)
+                            {
+                                ani[j] = shot[enterIdx % 4];                                
+                            }
+                            else ani[j] = 0x20;
+                        }
+                        ani[0] = gun[2];
+                    }
+                    
+                    smallFont(ani,rawbuf);
+                    ++enter_ani;
+                    if(enterIdx > MAX_SMALL_CHARACTERS) 
+                    {
+                        enter_ani = 0;
+                    }
                 }
+                else
+                {
+                    char layers[10];
+                    layers[0] = layer_state & 2   ? 0x07 :' ';
+                    layers[1] = layer_state & 4   ? 0x0F :' ';
+                    layers[2] = layer_state & 8   ? 0x0e :' ';
+                    layers[3] = layer_state & 16  ?  '#' :' ';
+                    layers[4] = layer_state & 32  ? 0x10 :' ';
+                    layers[5] = layer_state & 64  ? 0x11 :' ';
+                    layers[6] = layer_state & 128 ? 0x15 :' ';
+                    layers[7] = 0;
+                    largeFont(layers, i % 2, rawbuf);
+                }
+
+
+                
                 
             }
             getLockStateImage(i,rawbuf);
